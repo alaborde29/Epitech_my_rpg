@@ -93,4 +93,17 @@ void draw_scene(framebuffer_t *buffer, scene_t *scene, int current_scene);
 
 void destroy_all(scene_t *scene, framebuffer_t *buffer);
 
+int init_text(button_t *button, char *path, \
+sfVector2f position, char *string);
+
+void quit_game(int *current_scene, scene_t *scene, sfRenderWindow *window);
+
+void switch_to_game(int *current_scene, scene_t *scene, sfRenderWindow *window);
+
+int button_is_clicked(button_t *button, sfVector2f click_position);
+
+void check_event(framebuffer_t *buffer, scene_t *scene, int *current_scene);
+
+void check_buttons(scene_t *scene, framebuffer_t *buffer, int *current_scene);
+
 #endif /* !RPG_H_ */

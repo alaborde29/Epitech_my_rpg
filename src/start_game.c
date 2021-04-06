@@ -13,8 +13,7 @@ void start_game(framebuffer_t *buffer, scene_t *scene)
 
     while (sfRenderWindow_isOpen(buffer->window)) {
         while (sfRenderWindow_pollEvent(buffer->window, &buffer->event)) {
-            if (buffer->event.type == sfEvtClosed)
-                sfRenderWindow_close(buffer->window);
+            check_event(buffer, scene, &current_scene);
         }
         sfRenderWindow_clear(buffer->window, sfBlack);
         draw_scene(buffer, scene, current_scene);

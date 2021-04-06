@@ -16,6 +16,11 @@ SRC		=	src/main.c					\
 			src/init_object.c			\
 			src/init_button.c			\
 			src/destroy_all.c			\
+			src/init_text.c				\
+			src/callback.c				\
+			src/button_is_clicked.c		\
+			src/check_event.c			\
+			src/check_buttons.c			\
 
 CC 		= 	gcc
 
