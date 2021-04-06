@@ -5,17 +5,27 @@
 ## Makefile
 ##
 
-SRC		=	src/main.c
+SRC		=	src/main.c					\
+			src/create_framebuffer.c	\
+			src/start_game.c			\
+			src/malloc_scene.c			\
+			src/create_scene.c			\
+			src/init_first_scene.c		\
+			src/init_all_scene.c		\
+			src/draw_scene.c			\
+			src/init_object.c			\
+			src/init_button.c			\
+			src/destroy_all.c			\
 
 CC 		= 	gcc
 
 OBJ		=	$(SRC:.c=.o)
 
-NAME	=	myrpg
+NAME	=	my_rpg
 
 CFLAGS	=	-Wall -Werror -Wshadow -Wextra -I include/
 
-LDFLAGS	=	-L./lib/ -lmy
+LDFLAGS	=	-L./lib/ -lmy -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 
 RM		=	rm
 
