@@ -40,10 +40,11 @@ void destroy_buttons(button_t **buttons)
 
 void destroy_all_scene(scene_t *scene)
 {
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 2; i++) {
         destroy_objs(scene[i].objs);
         destroy_buttons(scene[i].buttons);
     }
+    free(scene);
 }
 
 void destroy_all(scene_t *scene, framebuffer_t *buffer)

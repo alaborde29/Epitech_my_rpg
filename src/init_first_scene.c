@@ -62,6 +62,7 @@ int init_first_scene(scene_t *scene)
 {
     if (malloc_scene(scene, 0, 3, 3) == -1)
         return (-1);
+    scene[0].music = NULL;
     if (init_button_1(scene) == -1 || init_objs_1(scene) == -1)
         return (-1);
     return (0);

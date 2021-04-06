@@ -106,4 +106,6 @@ void check_event(framebuffer_t *buffer, scene_t *scene, int *current_scene);
 
 void check_buttons(scene_t *scene, framebuffer_t *buffer, int *current_scene);
 
+int init_second_scene(scene_t *scene);
+
 #endif /* !RPG_H_ */

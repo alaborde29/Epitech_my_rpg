@@ -21,6 +21,7 @@ SRC		=	src/main.c					\
 			src/button_is_clicked.c		\
 			src/check_event.c			\
 			src/check_buttons.c			\
+			src/init_second_scene.c		\
 
 CC 		= 	gcc
 

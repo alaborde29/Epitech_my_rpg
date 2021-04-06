@@ -10,7 +10,7 @@
 int main(void)
 {
     framebuffer_t *buffer = create_framebuffer((sfVideoMode){1920, 1080, 32});
-    scene_t *scene = create_scene(1);
+    scene_t *scene = create_scene(2);
 
     if (buffer == NULL || scene == NULL)
         return (84);
