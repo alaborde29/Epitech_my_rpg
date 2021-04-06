@@ -14,7 +14,8 @@ int main(void)
 
     if (buffer == NULL || scene == NULL)
         return (84);
-    init_all_scene(scene);
+    if (init_all_scene(scene) == -1)
+        return (84);
     start_game(buffer, scene);
     destroy_all(scene, buffer);
     return (0);

@@ -32,10 +32,12 @@ int init_text_1(scene_t *scene)
 
 int init_objs_1(scene_t *scene)
 {
-    init_object(scene[0].objs[0], "assets/menu_bg.jpg", \
-(sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080});
-    init_object(scene[0].objs[1], "assets/logo.png", \
-(sfVector2f){720, 0}, (sfIntRect){0, 0, 1200, 442});
+    if (init_object(scene[0].objs[0], "assets/menu_bg.jpg", \
+(sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080}) == -1)
+        return (-1);
+    if (init_object(scene[0].objs[1], "assets/logo.png", \
+(sfVector2f){720, 0}, (sfIntRect){0, 0, 1200, 442}) == -1)
+        return (-1);
     sfSprite_setScale(scene[0].objs[1]->sprite, (sfVector2f){0.4, 0.4});
     scene[0].objs[2] = NULL;
     return (0);
@@ -43,17 +45,20 @@ int init_objs_1(scene_t *scene)
 
 int init_button_1(scene_t *scene)
 {
-    init_button(scene[0].buttons[0], (sfVector2f){960, 450}, \
-(sfVector2f){220, 75}, "assets/button.png");
+    if (init_button(scene[0].buttons[0], (sfVector2f){960, 450}, \
+(sfVector2f){220, 75}, "assets/button.png") == -1)
+        return (-1);
     sfRectangleShape_setOrigin(scene[0].buttons[0]->rect, \
 (sfVector2f){110, 37.5});
     scene[0].buttons[0]->callback = &switch_to_game;
-    init_button(scene[0].buttons[1], (sfVector2f){960, 590}, \
-(sfVector2f){220, 75}, "assets/button.png");
+    if (init_button(scene[0].buttons[1], (sfVector2f){960, 590}, \
+(sfVector2f){220, 75}, "assets/button.png" ) == -1)
+        return (-1);
     sfRectangleShape_setOrigin(scene[0].buttons[1]->rect, \
 (sfVector2f){110, 37.5});
     scene[0].buttons[1]->callback = &quit_game;
-    init_text_1(scene);
+    if (init_text_1(scene) == -1)
+        return (-1);
     scene[0].buttons[2] = NULL;
     return (0);
 }
