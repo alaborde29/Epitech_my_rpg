@@ -19,6 +19,8 @@ void destroy_objs(game_object_t **objs)
     for (int i = 0; objs[i]; i++) {
         sfSprite_destroy(objs[i]->sprite);
         sfTexture_destroy(objs[i]->texture);
+        if (objs[i]->clock != NULL)
+            sfClock_destroy(objs[i]->clock);
         free(objs[i]);
     }
     free(objs);

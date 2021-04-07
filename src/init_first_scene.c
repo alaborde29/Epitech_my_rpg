@@ -35,10 +35,12 @@ int init_objs_1(scene_t *scene)
     if (init_object(scene[0].objs[0], "assets/menu_bg.jpg", \
 (sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080}) == -1)
         return (-1);
+    scene[0].objs[0]->clock = NULL;
     if (init_object(scene[0].objs[1], "assets/logo.png", \
 (sfVector2f){720, 0}, (sfIntRect){0, 0, 1200, 442}) == -1)
         return (-1);
     sfSprite_setScale(scene[0].objs[1]->sprite, (sfVector2f){0.4, 0.4});
+    scene[0].objs[1]->clock = NULL;
     scene[0].objs[2] = NULL;
     return (0);
 }

@@ -24,6 +24,8 @@
 #include <time.h>
 #include <stdbool.h>
 
+#define PLAYER 1
+
 typedef struct scene_s scene_t;
 
 typedef struct button_s
@@ -48,6 +50,9 @@ typedef struct game_object_s
     sfIntRect rect;
     int offset;
     int max_value;
+    sfClock *clock;
+    sfTime time;
+    float seconds;
 }game_object_t;
 
 struct scene_s
@@ -107,5 +112,19 @@ void check_event(framebuffer_t *buffer, scene_t *scene, int *current_scene);
 void check_buttons(scene_t *scene, framebuffer_t *buffer, int *current_scene);
 
 int init_second_scene(scene_t *scene);
+
+void animate_sprite(game_object_t *obj);
+
+void update_sprites(scene_t *scene, int current_scene);
+
+void down_move(game_object_t *obj);
+
+void up_move(game_object_t *obj);
+
+void right_move(game_object_t *obj);
+
+void left_move(game_object_t *obj);
+
+void update_sprite(game_object_t *obj);
 
 #endif /* !RPG_H_ */
