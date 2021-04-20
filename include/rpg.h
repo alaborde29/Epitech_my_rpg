@@ -127,4 +127,12 @@ void left_move(game_object_t *obj);
 
 void update_sprite(game_object_t *obj);
 
+int check_button_state(framebuffer_t *buffer, \
+scene_t *scene, int current_scene);
+
+void clicked_status(scene_t *scene, int current_scene, \
+sfMouseButtonEvent mouse_event);
+
+int init_third_scene(scene_t *scene);
+
 #endif /* !RPG_H_ */

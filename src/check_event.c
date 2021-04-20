@@ -45,4 +45,8 @@ void check_event(framebuffer_t *buffer, scene_t *scene, int *current_scene)
     if (buffer->event.type == sfEvtMouseButtonReleased)
         check_buttons(scene, buffer, current_scene);
     move_event(scene, current_scene[0]);
+    if (buffer->event.type == sfEvtMouseButtonPressed)
+        clicked_status(scene, current_scene[0], buffer->event.mouseButton);
+    if (sfKeyboard_isKeyPressed(sfKeyEscape) && current_scene[0] == 1)
+        current_scene[0] = 2;
 }

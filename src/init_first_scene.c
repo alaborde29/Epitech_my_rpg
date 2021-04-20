@@ -53,12 +53,16 @@ int init_button_1(scene_t *scene)
     sfRectangleShape_setOrigin(scene[0].buttons[0]->rect, \
 (sfVector2f){110, 37.5});
     scene[0].buttons[0]->callback = &switch_to_game;
+    scene[0].buttons[0]->over = false;
+    scene[0].buttons[0]->clicked = false;
     if (init_button(scene[0].buttons[1], (sfVector2f){960, 590}, \
 (sfVector2f){220, 75}, "assets/button.png" ) == -1)
         return (-1);
     sfRectangleShape_setOrigin(scene[0].buttons[1]->rect, \
 (sfVector2f){110, 37.5});
     scene[0].buttons[1]->callback = &quit_game;
+    scene[0].buttons[1]->over = false;
+    scene[0].buttons[1]->clicked = false;
     if (init_text_1(scene) == -1)
         return (-1);
     scene[0].buttons[2] = NULL;

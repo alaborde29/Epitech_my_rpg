@@ -13,5 +13,7 @@ int init_all_scene(scene_t *scene)
         return (-1);
     if (init_second_scene(scene) == -1)
         return (-1);
+    if (init_third_scene(scene) == -1)
+        return (-1);
     return (0);
 }

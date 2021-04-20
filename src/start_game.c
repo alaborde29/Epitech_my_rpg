@@ -16,6 +16,7 @@ void start_game(framebuffer_t *buffer, scene_t *scene)
             check_event(buffer, scene, &current_scene);
         }
         sfRenderWindow_clear(buffer->window, sfBlack);
+        check_button_state(buffer, scene, current_scene);
         draw_scene(buffer, scene, current_scene);
         sfRenderWindow_display(buffer->window);
     }

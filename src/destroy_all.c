@@ -11,12 +11,13 @@ void destroy_buffer(framebuffer_t *buffer)
 {
     sfRenderWindow_destroy(buffer->window);
     free(buffer);
-
 }
 
 void destroy_objs(game_object_t **objs)
 {
-    for (int i = 0; objs[i]; i++) {
+    int i = 0;
+
+    for (i = 0; objs[i]; i++) {
         sfSprite_destroy(objs[i]->sprite);
         sfTexture_destroy(objs[i]->texture);
         if (objs[i]->clock != NULL)
@@ -28,7 +29,9 @@ void destroy_objs(game_object_t **objs)
 
 void destroy_buttons(button_t **buttons)
 {
-    for (int i = 0; buttons[i]; i++) {
+    int i = 0;
+
+    for (i = 0; buttons[i]; i++) {
         sfRectangleShape_destroy(buttons[i]->rect);
         sfTexture_destroy(buttons[i]->texture);
         if (buttons[i]->text != NULL && buttons[i]->font != NULL) {
@@ -42,7 +45,7 @@ void destroy_buttons(button_t **buttons)
 
 void destroy_all_scene(scene_t *scene)
 {
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 3; i++) {
         destroy_objs(scene[i].objs);
         destroy_buttons(scene[i].buttons);
     }

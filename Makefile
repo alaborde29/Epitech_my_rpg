@@ -25,6 +25,8 @@ SRC		=	src/main.c					\
 			src/animate_sprite.c		\
 			src/update_sprites.c		\
 			src/player_move.c			\
+			src/check_button_state.c	\
+			src/init_third_scene.c		\
 
 CC 		= 	gcc
 
