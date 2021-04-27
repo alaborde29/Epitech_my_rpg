@@ -27,6 +27,15 @@ SRC		=	src/main.c					\
 			src/player_move.c			\
 			src/check_button_state.c	\
 			src/init_third_scene.c		\
+			src/create_player.c			\
+			src/game_scene.c			\
+			src/pause.c					\
+			src/menu.c					\
+			src/starter_choice.c		\
+			src/create_game.c			\
+			src/init_starter.c			\
+			src/check_starter_click.c	\
+			src/destroy_pokemon.c		\
 
 CC 		= 	gcc
 

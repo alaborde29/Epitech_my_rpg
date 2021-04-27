@@ -52,8 +52,11 @@ void destroy_all_scene(scene_t *scene)
     free(scene);
 }
 
-void destroy_all(scene_t *scene, framebuffer_t *buffer)
+void destroy_all(scene_t *scene, framebuffer_t *buffer, game_t *game)
 {
     destroy_all_scene(scene);
     destroy_buffer(buffer);
+    destroy_player(game->player);
+    destroy_starter(game->starter);
+    free(game);
 }

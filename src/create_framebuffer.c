@@ -14,6 +14,7 @@ framebuffer_t *create_framebuffer(sfVideoMode mode)
     if (buffer == NULL)
         return (NULL);
     buffer->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
+    sfRenderWindow_setFramerateLimit(buffer->window, 60);
     if (buffer->window == NULL)
         return (NULL);
     buffer->mode = mode;

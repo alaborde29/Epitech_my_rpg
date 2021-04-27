@@ -17,7 +17,7 @@ int init_objs_2(scene_t *scene)
     scene[1].objs[0]->max_value = 0;
     scene[1].objs[0]->clock = NULL;
     if (init_object(scene[1].objs[1], "assets/player_spritesheet.png", \
-(sfVector2f){100, 100}, (sfIntRect){0, 0, 34, 52}) == -1)
+(sfVector2f){(1920 / 2) - 20, 1080 / 2 - 31}, (sfIntRect){0, 0, 34, 52}) == -1)
         return (-1);
     sfSprite_setScale(scene[1].objs[1]->sprite, (sfVector2f){1.2, 1.2});
     scene[1].objs[1]->clock = sfClock_create();

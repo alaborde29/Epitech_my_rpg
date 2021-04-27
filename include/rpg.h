@@ -28,6 +28,39 @@
 
 typedef struct scene_s scene_t;
 
+typedef enum type {FIRE, WATER, GRASS}TYPE;
+
+typedef struct pokemon_s
+{
+    char *name;
+    char *first_attack;
+    int first_damage;
+    char *second_attack;
+    int second_damage;
+    int hp;
+    int level;
+    sfSprite *sprite;
+    sfTexture *back_texture;
+    sfTexture *front_texture;
+    TYPE type;
+}pokemon_t;
+
+typedef struct starter_s
+{
+    sfSprite *sprite;
+    sfSprite *bg_sprite;
+    sfTexture *bg_texture;
+    sfTexture *texture;
+    pokemon_t **pokemon;
+}starter_t;
+
+typedef struct player_s
+{
+    pokemon_t **pokemon;
+    sfVector2f position;
+    int nb_pokemon;
+}player_t;
+
 typedef struct button_s
 {
     sfRectangleShape *rect;
@@ -64,6 +97,9 @@ struct scene_s
 
 typedef struct game
 {
+    player_t *player;
+    starter_t *starter;
+    bool start;
 }game_t;
 
 typedef struct framebuffer
@@ -77,7 +113,7 @@ typedef struct framebuffer
 
 framebuffer_t *create_framebuffer(sfVideoMode mode);
 
-void start_game(framebuffer_t *buffer, scene_t *scene);
+void start_game(framebuffer_t *buffer, scene_t *scene, game_t *game);
 
 int malloc_scene(scene_t *scene, int current_scene, \
 int nb_objs, int nb_buttons);
@@ -96,7 +132,7 @@ sfVector2f position, sfIntRect rect);
 
 void draw_scene(framebuffer_t *buffer, scene_t *scene, int current_scene);
 
-void destroy_all(scene_t *scene, framebuffer_t *buffer);
+void destroy_all(scene_t *scene, framebuffer_t *buffer, game_t *game);
 
 int init_text(button_t *button, char *path, \
 sfVector2f position, char *string);
@@ -107,7 +143,8 @@ void switch_to_game(int *current_scene, scene_t *scene, sfRenderWindow *window);
 
 int button_is_clicked(button_t *button, sfVector2f click_position);
 
-void check_event(framebuffer_t *buffer, scene_t *scene, int *current_scene);
+void check_event(framebuffer_t *buffer, scene_t *scene, \
+game_t *game, int *current_scene);
 
 void check_buttons(scene_t *scene, framebuffer_t *buffer, int *current_scene);
 
@@ -134,5 +171,32 @@ void clicked_status(scene_t *scene, int current_scene, \
 sfMouseButtonEvent mouse_event);
 
 int init_third_scene(scene_t *scene);
+
+player_t *create_player(void);
+
+void menu(scene_t *scene, framebuffer_t *buffer, int *current_scene);
+
+void pause_scene(scene_t *scene, framebuffer_t *buffer, int *current_scene);
+
+void game_scene(scene_t *scene, framebuffer_t *buffer, \
+game_t *game, int *current_scene);
+
+void destroy_player(player_t *player);
+
+void starter_choice(game_t *game, framebuffer_t *buffer);
+
+game_t *create_game(void);
+
+void init_third_starter(pokemon_t *pokemon);
+
+void init_second_starter(pokemon_t *pokemon);
+
+void init_first_starter(pokemon_t *pokemon);
+
+void check_starter_click(game_t *game, sfMouseButtonEvent mouse_event);
+
+void destroy_pokemon(pokemon_t *pokemon);
+
+void destroy_starter(starter_t *starter);
 
 #endif /* !RPG_H_ */

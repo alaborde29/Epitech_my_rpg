@@ -7,17 +7,19 @@
 
 #include "rpg.h"
 
-void start_game(framebuffer_t *buffer, scene_t *scene)
+void start_game(framebuffer_t *buffer, scene_t *scene, game_t *game)
 {
     int current_scene = 0;
 
     while (sfRenderWindow_isOpen(buffer->window)) {
         while (sfRenderWindow_pollEvent(buffer->window, &buffer->event)) {
-            check_event(buffer, scene, &current_scene);
+            check_event(buffer, scene, game, &current_scene);
         }
-        sfRenderWindow_clear(buffer->window, sfBlack);
-        check_button_state(buffer, scene, current_scene);
-        draw_scene(buffer, scene, current_scene);
-        sfRenderWindow_display(buffer->window);
+        if (current_scene == 0)
+            menu(scene, buffer, &current_scene);
+        if (current_scene == 1)
+            game_scene(scene, buffer, game, &current_scene);
+        if (current_scene == 2)
+            pause_scene(scene, buffer, &current_scene);
     }
 }
