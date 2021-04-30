@@ -54,7 +54,7 @@ current_scene[0] == 1 && game->start == false)
         clicked_status(scene, current_scene[0], buffer->event.mouseButton);
     if (sfKeyboard_isKeyPressed(sfKeyEscape) && \
 (current_scene[0] == 1 || current_scene[0] == 3))
-        current_scene[0] = 2;
+        switch_to_pause(current_scene, scene);
     if (sfKeyboard_isKeyPressed(sfKeyC) && current_scene[0] == 1)
-        (*current_scene) = 3;
+        switch_to_fight(current_scene, scene);
 }

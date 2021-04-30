@@ -230,4 +230,8 @@ char *create_hp_string(int hp, int hp_max);
 
 char *create_level_string(int level);
 
+void switch_to_fight(int *current_scene, scene_t *scene);
+
+void switch_to_pause(int *current_scene, scene_t *scene);
+
 #endif /* !RPG_H_ */

@@ -33,7 +33,9 @@ int init_fight_scene(scene_t *scene)
 {
     if (malloc_scene(scene, 3, 3, 1) == -1)
         return (-1);
-    scene[3].music = NULL;
+    scene[3].music = sfMusic_createFromFile("assets/battle_music.ogg");
+    sfMusic_setLoop(scene[3].music, sfTrue);
+    sfMusic_setVolume(scene[3].music, 30);
     if (init_fight_button(scene) == -1 || init_fight_objs(scene) == -1)
         return (-1);
     return (0);
