@@ -16,7 +16,8 @@ sfTexture_copy(initial_pokemon->front_texture);
     dest_pokemon->type = initial_pokemon->type;
     dest_pokemon->name = my_strdup(initial_pokemon->name);
     dest_pokemon->hp = initial_pokemon->hp;
-    dest_pokemon->level = initial_pokemon->hp;
+    dest_pokemon->hp_max = initial_pokemon->hp_max;
+    dest_pokemon->level = initial_pokemon->level;
     dest_pokemon->first_attack = my_strdup(initial_pokemon->first_attack);
     dest_pokemon->first_damage = initial_pokemon->first_damage;
     dest_pokemon->second_attack = my_strdup(initial_pokemon->second_attack);
@@ -26,7 +27,8 @@ sfTexture_copy(initial_pokemon->front_texture);
 void add_pokemon(starter_t *starter, player_t *player, int nb)
 {
     dup_pokemon(starter->pokemon[nb], player->pokemon[0]);
-    player->nb_pokemon = 1;
+    dup_pokemon(starter->pokemon[nb], player->pokemon[1]);
+    player->nb_pokemon = 2;
 }
 
 void check_starter_click(game_t *game, sfMouseButtonEvent mouse_event)

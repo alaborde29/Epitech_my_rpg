@@ -21,5 +21,8 @@ void start_game(framebuffer_t *buffer, scene_t *scene, game_t *game)
             game_scene(scene, buffer, game, &current_scene);
         if (current_scene == 2)
             pause_scene(scene, buffer, &current_scene);
+        if (current_scene == 3) {
+            fight_scene(scene, buffer, game, &current_scene);
+        }
     }
 }

@@ -38,12 +38,27 @@ typedef struct pokemon_s
     char *second_attack;
     int second_damage;
     int hp;
+    int hp_max;
     int level;
     sfSprite *sprite;
     sfTexture *back_texture;
     sfTexture *front_texture;
     TYPE type;
 }pokemon_t;
+
+typedef struct fight_s
+{
+    sfFont *font;
+    sfText *name;
+    sfText *opponent_name;
+    sfTexture *hp_texture;
+    sfSprite *hp_sprite;
+    sfSprite *opponent_hp_sprite;
+    sfText *hp;
+    sfText *opponent_hp;
+    sfText *level;
+    sfText *opponent_level;
+}fight_t;
 
 typedef struct starter_s
 {
@@ -99,6 +114,7 @@ typedef struct game
 {
     player_t *player;
     starter_t *starter;
+    fight_t *fight;
     bool start;
 }game_t;
 
@@ -198,5 +214,20 @@ void check_starter_click(game_t *game, sfMouseButtonEvent mouse_event);
 void destroy_pokemon(pokemon_t *pokemon);
 
 void destroy_starter(starter_t *starter);
+
+int init_fight_scene(scene_t *scene);
+
+void fight_scene(scene_t *scene, framebuffer_t *buffer, \
+game_t *game, int *current_scene);
+
+fight_t *create_fight(void);
+
+char *my_itoc(int nb);
+
+void destroy_fight(fight_t *fight);
+
+char *create_hp_string(int hp, int hp_max);
+
+char *create_level_string(int level);
 
 #endif /* !RPG_H_ */

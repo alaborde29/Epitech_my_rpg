@@ -34,7 +34,7 @@ starter_t *create_starter(char *path)
     sfSprite_setPosition(starter->sprite, (sfVector2f){0, 800});
     starter->bg_sprite = sfSprite_create();
     starter->bg_texture = \
-    sfTexture_createFromFile("assets/starter_bg.png", NULL);
+sfTexture_createFromFile("assets/starter_bg.png", NULL);
     sfSprite_setTexture(starter->bg_sprite, starter->bg_texture, sfTrue);
     starter->pokemon = create_pokemon();
     init_pokemon(starter->pokemon);
@@ -47,6 +47,7 @@ game_t *create_game(void)
 
     game->starter = create_starter("assets/choose.png");
     game->player = create_player();
+    game->fight = create_fight();
     game->start = false;
     return (game);
 }

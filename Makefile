@@ -36,6 +36,11 @@ SRC		=	src/main.c					\
 			src/init_starter.c			\
 			src/check_starter_click.c	\
 			src/destroy_pokemon.c		\
+			src/init_fight_scene.c		\
+			src/fight_scene.c			\
+			src/create_fight.c			\
+			src/my_itoc.c				\
+			src/create_fight_string.c	\
 
 CC 		= 	gcc
 

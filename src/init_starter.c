@@ -13,6 +13,7 @@ void init_first_starter(pokemon_t *pokemon)
     pokemon->name = my_strdup("Charmander");
     pokemon->level = 1;
     pokemon->hp = 39;
+    pokemon->hp_max = 39;
     pokemon->sprite = sfSprite_create();
     pokemon->front_texture = \
 sfTexture_createFromFile("assets/pokemon/charmander/front.png", NULL);
@@ -33,6 +34,7 @@ void init_second_starter(pokemon_t *pokemon)
     pokemon->name = my_strdup("Bulbasaur");
     pokemon->level = 1;
     pokemon->hp = 45;
+    pokemon->hp_max = 45;
     pokemon->sprite = sfSprite_create();
     pokemon->front_texture = \
 sfTexture_createFromFile("assets/pokemon/bulbasaur/front.png", NULL);
@@ -53,6 +55,7 @@ void init_third_starter(pokemon_t *pokemon)
     pokemon->name = my_strdup("Squirtle");
     pokemon->level = 1;
     pokemon->hp = 44;
+    pokemon->hp_max = 44;
     pokemon->sprite = sfSprite_create();
     pokemon->front_texture = \
 sfTexture_createFromFile("assets/pokemon/squirtle/front.png", NULL);

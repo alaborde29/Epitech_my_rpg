@@ -45,12 +45,16 @@ game_t *game, int *current_scene)
         sfRenderWindow_close(buffer->window);
     if (buffer->event.type == sfEvtMouseButtonReleased)
         check_buttons(scene, buffer, current_scene);
-    move_event(scene, current_scene[0]);
+    if (current_scene[0] == 1)
+        move_event(scene, current_scene[0]);
     if (buffer->event.type == sfEvtMouseButtonPressed && \
 current_scene[0] == 1 && game->start == false)
         check_starter_click(game, buffer->event.mouseButton);
     if (buffer->event.type == sfEvtMouseButtonPressed)
         clicked_status(scene, current_scene[0], buffer->event.mouseButton);
-    if (sfKeyboard_isKeyPressed(sfKeyEscape) && current_scene[0] == 1)
+    if (sfKeyboard_isKeyPressed(sfKeyEscape) && \
+(current_scene[0] == 1 || current_scene[0] == 3))
         current_scene[0] = 2;
+    if (sfKeyboard_isKeyPressed(sfKeyC) && current_scene[0] == 1)
+        (*current_scene) = 3;
 }
