@@ -73,7 +73,9 @@ int init_first_scene(scene_t *scene)
 {
     if (malloc_scene(scene, 0, 3, 3) == -1)
         return (-1);
-    scene[0].music = NULL;
+    scene[0].music = sfMusic_createFromFile("assets/menu_music.ogg");
+    sfMusic_setLoop(scene[0].music, sfTrue);
+    sfMusic_setVolume(scene[0].music, 30);
     if (init_button_1(scene) == -1 || init_objs_1(scene) == -1)
         return (-1);
     return (0);

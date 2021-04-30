@@ -11,6 +11,7 @@ void start_game(framebuffer_t *buffer, scene_t *scene, game_t *game)
 {
     int current_scene = 0;
 
+    sfMusic_play(scene[0].music);
     while (sfRenderWindow_isOpen(buffer->window)) {
         while (sfRenderWindow_pollEvent(buffer->window, &buffer->event)) {
             check_event(buffer, scene, game, &current_scene);
