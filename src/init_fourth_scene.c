@@ -10,7 +10,7 @@
 int init_objs_4(scene_t *scene)
 {
     if (init_object(scene[4].objs[0], "assets/inventory.jpg", \
-(sfVector2f){0, 0}, (sfIntRect){0, 0, 600, 734}) == -1)
+(sfVector2f){680, 220}, (sfIntRect){0, 0, 600, 734}) == -1)
         return (-1);
     scene[4].objs[0]->clock = NULL;
     scene[4].objs[1] = NULL;
