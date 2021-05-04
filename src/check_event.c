@@ -57,4 +57,6 @@ current_scene[0] == 1 && game->start == false)
         switch_to_pause(current_scene, scene);
     if (sfKeyboard_isKeyPressed(sfKeyC) && current_scene[0] == 1)
         switch_to_fight(current_scene, scene);
+    if (sfKeyboard_isKeyPressed(sfKeyI) && current_scene[0] == 1)
+        switch_to_inventory(current_scene, scene);
 }
