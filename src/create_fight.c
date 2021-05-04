@@ -15,6 +15,8 @@ void set_font(fight_t *fight)
     sfText_setFont(fight->opponent_hp, fight->font);
     sfText_setFont(fight->level, fight->font);
     sfText_setFont(fight->opponent_level, fight->font);
+    sfText_setFont(fight->wait, fight->font);
+    sfText_setFont(fight->fight, fight->font);
 }
 
 void set_color(fight_t *fight)
@@ -25,6 +27,8 @@ void set_color(fight_t *fight)
     sfText_setColor(fight->opponent_hp, sfBlack);
     sfText_setColor(fight->level, sfBlack);
     sfText_setColor(fight->opponent_level, sfBlack);
+    sfText_setColor(fight->wait, sfWhite);
+    sfText_setColor(fight->fight, sfWhite);
 }
 
 void init_sprite(fight_t *fight)
@@ -52,6 +56,13 @@ fight_t *create_fight(void)
     fight->opponent_hp = sfText_create();
     fight->level = sfText_create();
     fight->opponent_level = sfText_create();
+    fight->wait = sfText_create();
+    fight->fight = sfText_create();
+    sfText_setPosition(fight->wait, (sfVector2f){75, 775});
+    sfText_setString(fight->wait, "Waiting opponent turn...");
+    sfText_setPosition(fight->fight, (sfVector2f){75, 775});
+    sfText_setString(fight->fight, "What do you want to do ?");
+    fight->player_turn = true;
     set_font(fight);
     set_color(fight);
     return (fight);
@@ -66,6 +77,7 @@ void destroy_fight(fight_t *fight)
     sfText_destroy(fight->opponent_hp);
     sfText_destroy(fight->level);
     sfText_destroy(fight->opponent_level);
+    sfText_destroy(fight->wait);
     sfTexture_destroy(fight->hp_texture);
     sfSprite_destroy(fight->hp_sprite);
     sfSprite_destroy(fight->opponent_hp_sprite);
