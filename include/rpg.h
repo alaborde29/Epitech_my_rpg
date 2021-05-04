@@ -57,6 +57,7 @@ typedef struct pokemon_s
 
 typedef struct fight_s
 {
+    pokemon_t *opponent_pokemon;
     sfFont *font;
     sfText *name;
     sfText *opponent_name;
@@ -130,6 +131,7 @@ typedef struct game
     starter_t *starter;
     fight_t *fight;
     bool start;
+    bool fighting;
 }game_t;
 
 //Functions of the project
@@ -250,11 +252,14 @@ void inventory(scene_t *scene, framebuffer_t *buffer, int *current_scene);
 
 void set_text_pos(fight_t *fight);
 
-void set_fighting_pokemon_text(pokemon_t *pokemon, \
-pokemon_t *opponent_pokemon, fight_t *fight);
+void set_fighting_pokemon_text(pokemon_t *pokemon, fight_t *fight);
 
 void set_fighting_pokemon(pokemon_t *pokemon, pokemon_t *opponent_pokemon);
 
 void run_action(int *current_scene, scene_t *scene, framebuffer_t *buffer);
+
+void dup_pokemon(pokemon_t *initial_pokemon, pokemon_t *dest_pokemon);
+
+sfText *create_text(sfVector2f pos, char *string, sfFont *font, sfColor color);
 
 #endif /* !RPG_H_ */

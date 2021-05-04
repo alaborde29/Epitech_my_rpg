@@ -43,11 +43,10 @@ game_t *game, int *current_scene)
     sfRenderWindow_drawSprite(buffer->window, \
 scene[current_scene[0]].objs[0]->sprite, NULL);
     set_fighting_pokemon(game->player->pokemon[0], \
-game->player->pokemon[1]);
-    set_fighting_pokemon_text(game->player->pokemon[0], \
-game->player->pokemon[1], game->fight);
+game->fight->opponent_pokemon);
+    set_fighting_pokemon_text(game->player->pokemon[0], game->fight);
     draw_fight(game->player->pokemon[0], \
-game->player->pokemon[1], buffer, game->fight);
+game->fight->opponent_pokemon, buffer, game->fight);
     sfRenderWindow_drawSprite(buffer->window, \
 scene[current_scene[0]].objs[1]->sprite, NULL);
     if (game->fight->player_turn == false) {
@@ -57,4 +56,5 @@ scene[current_scene[0]].objs[1]->sprite, NULL);
         display_button(buffer, scene[current_scene[0]].buttons);
     }
     sfRenderWindow_display(buffer->window);
+    game->fighting = true;
 }

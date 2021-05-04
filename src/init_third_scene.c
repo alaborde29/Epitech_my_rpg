@@ -12,21 +12,15 @@ int init_text_3(scene_t *scene)
     scene[2].buttons[0]->font = sfFont_createFromFile("assets/godzilla.ttf");
     if (scene[2].buttons[0]->font == NULL)
         return (-1);
-    scene[2].buttons[0]->text = sfText_create();
+    scene[2].buttons[0]->text = create_text((sfVector2f){960 - 50, 430}, \
+"RESUME", scene[2].buttons[0]->font, sfWhite);
     if (scene[2].buttons[0]->text == NULL)
         return (-1);
-    sfText_setFont(scene[2].buttons[0]->text, scene[2].buttons[0]->font);
-    sfText_setString(scene[2].buttons[0]->text, "RESUME");
-    sfText_setPosition(scene[2].buttons[0]->text, \
-(sfVector2f){960 - 50, 430});
     scene[2].buttons[1]->font = sfFont_createFromFile("assets/godzilla.ttf");
-    scene[2].buttons[1]->text = sfText_create();
-    if (scene[2].buttons[1]->font == NULL || scene[2].buttons[1]->text == NULL)
+    scene[2].buttons[1]->text = create_text((sfVector2f){960 - 35, 540 + 30}, \
+"QUIT", scene[2].buttons[1]->font, sfWhite);
+    if (scene[2].buttons[1]->text == NULL)
         return (-1);
-    sfText_setFont(scene[2].buttons[1]->text, scene[2].buttons[1]->font);
-    sfText_setString(scene[2].buttons[1]->text, "QUIT");
-    sfText_setPosition(scene[2].buttons[1]->text, \
-(sfVector2f){960 - 35, 540 + 30});
     return (0);
 }
 

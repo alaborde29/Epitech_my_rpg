@@ -27,8 +27,7 @@ sfTexture_copy(initial_pokemon->front_texture);
 void add_pokemon(starter_t *starter, player_t *player, int nb)
 {
     dup_pokemon(starter->pokemon[nb], player->pokemon[0]);
-    dup_pokemon(starter->pokemon[nb], player->pokemon[1]);
-    player->nb_pokemon = 2;
+    player->nb_pokemon = 1;
 }
 
 void check_starter_click(game_t *game, sfMouseButtonEvent mouse_event)

@@ -49,6 +49,7 @@ game_t *create_game(void)
     game->player = create_player();
     game->fight = create_fight();
     game->start = false;
+    game->fighting = false;
     return (game);
 }
 

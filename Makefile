@@ -45,6 +45,7 @@ SRC		=	src/main.c					\
 			src/inventory.c 			\
 			src/set_fight.c				\
 			src/fight_callback.c		\
+			src/create_text.c			\
 
 CC 		= 	gcc
 

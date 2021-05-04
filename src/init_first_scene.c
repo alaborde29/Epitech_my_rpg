@@ -12,21 +12,15 @@ int init_text_1(scene_t *scene)
     scene[0].buttons[0]->font = sfFont_createFromFile("assets/godzilla.ttf");
     if (scene[0].buttons[0]->font == NULL)
         return (-1);
-    scene[0].buttons[0]->text = sfText_create();
+    scene[0].buttons[0]->text = create_text((sfVector2f){960 - 35, 430}, \
+"PLAY", scene[0].buttons[0]->font, sfWhite);
     if (scene[0].buttons[0]->text == NULL)
         return (-1);
-    sfText_setFont(scene[0].buttons[0]->text, scene[0].buttons[0]->font);
-    sfText_setString(scene[0].buttons[0]->text, "PLAY");
-    sfText_setPosition(scene[0].buttons[0]->text, \
-(sfVector2f){960 - 35, 430});
     scene[0].buttons[1]->font = sfFont_createFromFile("assets/godzilla.ttf");
-    scene[0].buttons[1]->text = sfText_create();
-    if (scene[0].buttons[1]->font == NULL || scene[0].buttons[1]->text == NULL)
+    scene[0].buttons[1]->text = create_text((sfVector2f){960 - 35, 540 + 30}, \
+"QUIT", scene[0].buttons[1]->font, sfWhite);
+    if (scene[0].buttons[1]->text == NULL)
         return (-1);
-    sfText_setFont(scene[0].buttons[1]->text, scene[0].buttons[1]->font);
-    sfText_setString(scene[0].buttons[1]->text, "QUIT");
-    sfText_setPosition(scene[0].buttons[1]->text, \
-(sfVector2f){960 - 35, 540 + 30});
     return (0);
 }
 
