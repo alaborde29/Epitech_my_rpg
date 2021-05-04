@@ -7,52 +7,20 @@
 
 #include "rpg.h"
 
-void set_text_pos(fight_t *fight)
+void display_text(framebuffer_t *buffer, sfText *text)
 {
-    sfText_setPosition(fight->name, (sfVector2f){1120, 520});
-    sfText_setPosition(fight->opponent_name, (sfVector2f){140, 140});
-    sfText_setPosition(fight->hp, (sfVector2f){1130, 640});
-    sfText_setPosition(fight->opponent_hp, (sfVector2f){140, 220});
-    sfText_setPosition(fight->level, (sfVector2f){1650, 520});
-    sfText_setPosition(fight->opponent_level, (sfVector2f){650, 140});
+    sfRenderWindow_drawText(buffer->window, text, NULL);
 }
 
-void set_fighting_pokemon_text(pokemon_t *pokemon, \
-pokemon_t *opponent_pokemon, fight_t *fight)
+void display_button(framebuffer_t *buffer, button_t **buttons)
 {
-    char *hp_str = NULL;
-    char *level_str = NULL;
-
-    level_str = create_level_string(pokemon->level);
-    sfText_setString(fight->level, level_str);
-    free(level_str);
-    level_str = create_level_string(opponent_pokemon->level);
-    hp_str = create_hp_string(pokemon->hp, pokemon->hp_max);
-    sfText_setString(fight->hp, hp_str);
-    free(hp_str);
-    hp_str = create_hp_string(opponent_pokemon->hp, \
-opponent_pokemon->hp_max);
-    sfText_setString(fight->name, pokemon->name);
-    sfText_setString(fight->opponent_name, opponent_pokemon->name);
-    sfText_setString(fight->opponent_hp, hp_str);
-    sfText_setString(fight->opponent_level, level_str);
-    set_text_pos(fight);
-    free(level_str);
-    free(hp_str);
+    for (int i = 0; buttons[i]; i++) {
+        sfRenderWindow_drawRectangleShape(buffer->window, \
+buttons[i]->rect, NULL);
+    }
 }
 
-void set_fighting_pokemon(pokemon_t *pokemon, pokemon_t *opponent_pokemon)
-{
-    sfSprite_setTexture(pokemon->sprite, pokemon->back_texture, sfTrue);
-    sfSprite_setTexture(opponent_pokemon->sprite, \
-pokemon->front_texture, sfTrue);
-    sfSprite_setScale(pokemon->sprite, (sfVector2f){6.5, 6.5});
-    sfSprite_setScale(opponent_pokemon->sprite, (sfVector2f){6.5, 6.5});
-    sfSprite_setPosition(pokemon->sprite, (sfVector2f){350, 550});
-    sfSprite_setPosition(opponent_pokemon->sprite, (sfVector2f){1280, 180});
-}
-
-void draw_fighting_pokemon(pokemon_t *pokemon, \
+void draw_fight(pokemon_t *pokemon, \
 pokemon_t *opponent_pokemon, framebuffer_t *buffer, fight_t *fight)
 {
     sfRenderWindow_drawSprite(buffer->window, pokemon->sprite, NULL);
@@ -78,9 +46,15 @@ scene[current_scene[0]].objs[0]->sprite, NULL);
 game->player->pokemon[1]);
     set_fighting_pokemon_text(game->player->pokemon[0], \
 game->player->pokemon[1], game->fight);
-    draw_fighting_pokemon(game->player->pokemon[0], \
+    draw_fight(game->player->pokemon[0], \
 game->player->pokemon[1], buffer, game->fight);
     sfRenderWindow_drawSprite(buffer->window, \
 scene[current_scene[0]].objs[1]->sprite, NULL);
+    if (game->fight->player_turn == false) {
+        display_text(buffer, game->fight->wait);
+    } else {
+        display_text(buffer, game->fight->fight);
+        display_button(buffer, scene[current_scene[0]].buttons);
+    }
     sfRenderWindow_display(buffer->window);
 }

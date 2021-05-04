@@ -25,7 +25,7 @@ buffer->event.mouseButton.y};
         if (check_button(scene[current_scene[0]].buttons[i], \
 click_position) == 1) {
             scene[current_scene[0]].buttons[i]->callback(current_scene, \
-scene, buffer->window);
+scene, buffer);
         }
         if (initial_scene != current_scene[0]) {
             scene[initial_scene].buttons[i]->clicked = false;

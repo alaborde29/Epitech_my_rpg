@@ -10,6 +10,8 @@
 void destroy_buffer(framebuffer_t *buffer)
 {
     sfRenderWindow_destroy(buffer->window);
+    sfView_destroy(buffer->view);
+    sfView_destroy(buffer->initial_view);
     free(buffer);
 }
 
