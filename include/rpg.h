@@ -243,7 +243,8 @@ void switch_to_pause(int *current_scene, scene_t *scene, framebuffer_t *buffer);
 
 int init_fourth_scene(scene_t *scene);
 
-void switch_to_inventory(int *current_scene, scene_t *scene);
+void switch_to_inventory(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer);
 
 void inventory(scene_t *scene, framebuffer_t *buffer, int *current_scene);
 

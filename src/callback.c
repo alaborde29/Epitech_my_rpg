@@ -42,8 +42,10 @@ void switch_to_pause(int *current_scene, scene_t *scene, framebuffer_t *buffer)
         sfMusic_play(scene[current_scene[0]].music);
 }
 
-void switch_to_inventory(int *current_scene, scene_t *scene)
+void switch_to_inventory(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer)
 {
+    sfRenderWindow_setView(buffer->window, buffer->initial_view);
     if (scene[current_scene[0]].music != NULL)
         sfMusic_stop(scene[current_scene[0]].music);
     (*current_scene) = 4;
