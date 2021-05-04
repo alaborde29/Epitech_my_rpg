@@ -49,22 +49,22 @@ fight_t *create_fight(void)
     fight_t *fight = malloc(sizeof(fight_t));
 
     init_sprite(fight);
+    fight->opponent_pokemon = malloc(sizeof(pokemon_t));
     fight->font = sfFont_createFromFile("assets/godzilla.ttf");
-    fight->name = sfText_create();
-    fight->opponent_name = sfText_create();
-    fight->hp = sfText_create();
-    fight->opponent_hp = sfText_create();
-    fight->level = sfText_create();
-    fight->opponent_level = sfText_create();
-    fight->wait = sfText_create();
-    fight->fight = sfText_create();
-    sfText_setPosition(fight->wait, (sfVector2f){75, 775});
-    sfText_setString(fight->wait, "Waiting opponent turn...");
-    sfText_setPosition(fight->fight, (sfVector2f){75, 775});
-    sfText_setString(fight->fight, "What do you want to do ?");
+    fight->name = create_text((sfVector2f){0, 0}, NULL, fight->font, sfBlack);
+    fight->opponent_name = create_text((sfVector2f){0, 0}, \
+NULL, fight->font, sfBlack);
+    fight->hp = create_text((sfVector2f){0, 0}, NULL, fight->font, sfBlack);
+    fight->opponent_hp = create_text((sfVector2f){0, 0}, \
+NULL, fight->font, sfBlack);
+    fight->level = create_text((sfVector2f){0, 0}, NULL, fight->font, sfBlack);
+    fight->opponent_level = create_text((sfVector2f){0, 0}, \
+NULL, fight->font, sfBlack);
+    fight->wait = create_text((sfVector2f){75, 775}, \
+"Waiting opponent turn...", fight->font, sfWhite);
+    fight->fight = create_text((sfVector2f){75, 775}, \
+"What do you want to do ?", fight->font, sfWhite);
     fight->player_turn = true;
-    set_font(fight);
-    set_color(fight);
     return (fight);
 }
 
