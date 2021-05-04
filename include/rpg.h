@@ -234,4 +234,10 @@ void switch_to_fight(int *current_scene, scene_t *scene);
 
 void switch_to_pause(int *current_scene, scene_t *scene);
 
+int init_fourth_scene(scene_t *scene);
+
+void switch_to_inventory(int *current_scene, scene_t *scene);
+
+void inventory(scene_t *scene, framebuffer_t *buffer, int *current_scene);
+
 #endif /* !RPG_H_ */
