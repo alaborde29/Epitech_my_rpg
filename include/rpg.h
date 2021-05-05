@@ -9,6 +9,7 @@
 #define RPG_H_
 
 #include "my.h"
+#include "tiles.h"
 #include <SFML/Audio.h>
 #include <SFML/Graphics.h>
 #include <stdlib.h>
@@ -106,6 +107,8 @@ typedef struct game_object_s
 struct scene_s
 {
     struct game_object_s **objs;
+    struct game_object_s ***ground_map;
+    struct game_object_s ***above_map;
     struct button_s **buttons;
     sfMusic *music;
 };
@@ -145,6 +148,8 @@ sfVector2f size, char *path);
 
 int init_object(game_object_t *obj, char *path, \
 sfVector2f position, sfIntRect rect);
+
+sfIntRect init_rect(int width, int height, int x, int y);
 
 void draw_scene(framebuffer_t *buffer, scene_t *scene, int current_scene);
 
@@ -233,5 +238,23 @@ char *create_level_string(int level);
 void switch_to_fight(int *current_scene, scene_t *scene);
 
 void switch_to_pause(int *current_scene, scene_t *scene);
+
+/*init tiles*/
+
+int init_tile(game_object_t ***map, char *map_path);
+
+tile_t *init_tile_tab(void);
+
+void draw_map(framebuffer_t *framebuffer, scene_t scene);
+
+/*utilities functions*/
+
+int count_str_lines(char *str);
+
+char *read_file(char *path, char *buffer);
+
+game_object_t **setup_tile_map(char *map_buffer);
+
+int linelen_from_n_line(char *str, int line);
 
 #endif /* !RPG_H_ */

@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include "tiles.h"
 
 int init_objs_2(scene_t *scene)
 {
@@ -39,6 +40,7 @@ int init_second_scene(scene_t *scene)
     if (malloc_scene(scene, 1, 3, 1) == -1)
         return (-1);
     scene[1].music = NULL;
+    init_tile(scene[1].ground_map, TEST_1);
     if (init_buttons_2(scene) == -1 || init_objs_2(scene) == -1)
         return (-1);
     return (0);
