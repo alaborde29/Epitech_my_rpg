@@ -10,6 +10,8 @@
 void destroy_buffer(framebuffer_t *buffer)
 {
     sfRenderWindow_destroy(buffer->window);
+    sfView_destroy(buffer->view);
+    sfView_destroy(buffer->initial_view);
     free(buffer);
 }
 
@@ -45,7 +47,7 @@ void destroy_buttons(button_t **buttons)
 
 void destroy_all_scene(scene_t *scene)
 {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         destroy_objs(scene[i].objs);
         destroy_buttons(scene[i].buttons);
         if (scene[i].music != NULL)

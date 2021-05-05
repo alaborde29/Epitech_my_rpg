@@ -31,6 +31,15 @@ typedef struct scene_s scene_t;
 
 typedef enum type {FIRE, WATER, GRASS}TYPE;
 
+typedef struct framebuffer
+{
+    sfRenderWindow *window;
+    sfView *view;
+    sfView *initial_view;
+    sfVideoMode mode;
+    sfEvent event;
+}framebuffer_t;
+
 typedef struct pokemon_s
 {
     char *name;
@@ -49,6 +58,7 @@ typedef struct pokemon_s
 
 typedef struct fight_s
 {
+    pokemon_t *opponent_pokemon;
     sfFont *font;
     sfText *name;
     sfText *opponent_name;
@@ -59,6 +69,11 @@ typedef struct fight_s
     sfText *opponent_hp;
     sfText *level;
     sfText *opponent_level;
+    sfText *wait;
+    sfText *fight;
+    bool player_turn;
+    bool attack;
+    bool run;
 }fight_t;
 
 typedef struct starter_s
@@ -88,7 +103,7 @@ typedef struct button_s
     sfVector2f original_size;
     bool over;
     bool clicked;
-    void (*callback)(int *, scene_t *, sfRenderWindow *);
+    void (*callback)(int *, scene_t *, framebuffer_t *);
 }button_t;
 
 typedef struct game_object_s
@@ -119,14 +134,8 @@ typedef struct game
     starter_t *starter;
     fight_t *fight;
     bool start;
+    bool fighting;
 }game_t;
-
-typedef struct framebuffer
-{
-    sfRenderWindow *window;
-    sfVideoMode mode;
-    sfEvent event;
-}framebuffer_t;
 
 //Functions of the project
 
@@ -158,9 +167,9 @@ void destroy_all(scene_t *scene, framebuffer_t *buffer, game_t *game);
 int init_text(button_t *button, char *path, \
 sfVector2f position, char *string);
 
-void quit_game(int *current_scene, scene_t *scene, sfRenderWindow *window);
+void quit_game(int *current_scene, scene_t *scene, framebuffer_t *buffer);
 
-void switch_to_game(int *current_scene, scene_t *scene, sfRenderWindow *window);
+void switch_to_game(int *current_scene, scene_t *scene, framebuffer_t *buffer);
 
 int button_is_clicked(button_t *button, sfVector2f click_position);
 
@@ -175,13 +184,13 @@ void animate_sprite(game_object_t *obj);
 
 void update_sprites(scene_t *scene, int current_scene);
 
-void down_move(game_object_t *obj);
+void down_move(game_object_t *obj, framebuffer_t *buffer);
 
-void up_move(game_object_t *obj);
+void up_move(game_object_t *obj, framebuffer_t *buffer);
 
-void right_move(game_object_t *obj);
+void right_move(game_object_t *obj, framebuffer_t *buffer);
 
-void left_move(game_object_t *obj);
+void left_move(game_object_t *obj, framebuffer_t *buffer);
 
 void update_sprite(game_object_t *obj);
 
@@ -235,9 +244,28 @@ char *create_hp_string(int hp, int hp_max);
 
 char *create_level_string(int level);
 
-void switch_to_fight(int *current_scene, scene_t *scene);
+void switch_to_fight(int *current_scene, scene_t *scene, framebuffer_t *buffer);
 
-void switch_to_pause(int *current_scene, scene_t *scene);
+void switch_to_pause(int *current_scene, scene_t *scene, framebuffer_t *buffer);
+
+int init_fourth_scene(scene_t *scene);
+
+void switch_to_inventory(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer);
+
+void inventory(scene_t *scene, framebuffer_t *buffer, int *current_scene);
+
+void set_text_pos(fight_t *fight);
+
+void set_fighting_pokemon_text(pokemon_t *pokemon, fight_t *fight);
+
+void set_fighting_pokemon(pokemon_t *pokemon, pokemon_t *opponent_pokemon);
+
+void run_action(int *current_scene, scene_t *scene, framebuffer_t *buffer);
+
+void dup_pokemon(pokemon_t *initial_pokemon, pokemon_t *dest_pokemon);
+
+sfText *create_text(sfVector2f pos, char *string, sfFont *font, sfColor color);
 
 /*init tiles*/
 

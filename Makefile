@@ -45,6 +45,11 @@ SRC		=	src/main.c					\
 			src/map/init_tile.c			\
 			src/map/setup_tile_tab.c	\
 			src/map/utilities.c			\
+			src/init_fourth_scene.c 	\
+			src/inventory.c 			\
+			src/set_fight.c				\
+			src/fight_callback.c		\
+			src/create_text.c			\
 
 CC 		= 	gcc
 

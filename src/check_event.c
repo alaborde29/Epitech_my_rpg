@@ -15,24 +15,24 @@ void reset_player(game_object_t *obj, int indic)
     }
 }
 
-void move_event(scene_t *scene, int current_scene)
+void move_event(scene_t *scene, int current_scene, framebuffer_t *buffer)
 {
     int indic = 0;
 
     if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
-        left_move(scene[current_scene].objs[PLAYER]);
+        left_move(scene[current_scene].objs[PLAYER], buffer);
         indic = 1;
     }
     if (sfKeyboard_isKeyPressed(sfKeyRight)) {
-        right_move(scene[current_scene].objs[PLAYER]);
+        right_move(scene[current_scene].objs[PLAYER], buffer);
         indic = 1;
     }
     if (sfKeyboard_isKeyPressed(sfKeyUp)) {
-        up_move(scene[current_scene].objs[PLAYER]);
+        up_move(scene[current_scene].objs[PLAYER], buffer);
         indic = 1;
     }
     if (sfKeyboard_isKeyPressed(sfKeyDown)) {
-        down_move(scene[current_scene].objs[PLAYER]);
+        down_move(scene[current_scene].objs[PLAYER], buffer);
         indic = 1;
     }
     reset_player(scene[current_scene].objs[PLAYER], indic);
@@ -46,7 +46,7 @@ game_t *game, int *current_scene)
     if (buffer->event.type == sfEvtMouseButtonReleased)
         check_buttons(scene, buffer, current_scene);
     if (current_scene[0] == 1)
-        move_event(scene, current_scene[0]);
+        move_event(scene, current_scene[0], buffer);
     if (buffer->event.type == sfEvtMouseButtonPressed && \
 current_scene[0] == 1 && game->start == false)
         check_starter_click(game, buffer->event.mouseButton);
@@ -54,7 +54,9 @@ current_scene[0] == 1 && game->start == false)
         clicked_status(scene, current_scene[0], buffer->event.mouseButton);
     if (sfKeyboard_isKeyPressed(sfKeyEscape) && \
 (current_scene[0] == 1 || current_scene[0] == 3))
-        switch_to_pause(current_scene, scene);
+        switch_to_pause(current_scene, scene, buffer);
     if (sfKeyboard_isKeyPressed(sfKeyC) && current_scene[0] == 1)
-        switch_to_fight(current_scene, scene);
+        switch_to_fight(current_scene, scene, buffer);
+    if (sfKeyboard_isKeyPressed(sfKeyI) && current_scene[0] == 1)
+        switch_to_inventory(current_scene, scene, buffer);
 }
