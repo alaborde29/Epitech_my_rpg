@@ -56,7 +56,7 @@ int init_fight_button(scene_t *scene)
         return (-1);
     sfRectangleShape_setOrigin(scene[3].buttons[0]->rect, \
 (sfVector2f){110, 37.5});
-    init_button_value(scene[3].buttons[0], &switch_to_game);
+    init_button_value(scene[3].buttons[0], &attack_action);
     if (init_button(scene[3].buttons[1], (sfVector2f){1720, 800}, \
 (sfVector2f){220, 75}, "assets/pokemon.png") == -1)
         return (-1);

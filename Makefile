@@ -46,6 +46,8 @@ SRC		=	src/main.c					\
 			src/set_fight.c				\
 			src/fight_callback.c		\
 			src/create_text.c			\
+			src/make_our_turn.c			\
+			src/set_text.c				\
 
 CC 		= 	gcc
 

@@ -50,6 +50,9 @@ game_t *create_game(void)
     game->fight = create_fight();
     game->start = false;
     game->fighting = false;
+    game->fight->attack_choose = false;
+    game->fight->attack->first = false;
+    game->fight->attack->second = false;
     return (game);
 }
 
