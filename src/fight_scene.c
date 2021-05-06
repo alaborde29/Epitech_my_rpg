@@ -7,19 +7,6 @@
 
 #include "rpg.h"
 
-void display_text(framebuffer_t *buffer, sfText *text)
-{
-    sfRenderWindow_drawText(buffer->window, text, NULL);
-}
-
-void display_button(framebuffer_t *buffer, button_t **buttons)
-{
-    for (int i = 0; buttons[i]; i++) {
-        sfRenderWindow_drawRectangleShape(buffer->window, \
-buttons[i]->rect, NULL);
-    }
-}
-
 void draw_fight(pokemon_t *pokemon, \
 pokemon_t *opponent_pokemon, framebuffer_t *buffer, fight_t *fight)
 {
@@ -52,9 +39,11 @@ scene[current_scene[0]].objs[1]->sprite, NULL);
     if (game->fight->player_turn == false) {
         display_text(buffer, game->fight->wait);
     } else {
-        display_text(buffer, game->fight->fight);
-        display_button(buffer, scene[current_scene[0]].buttons);
+        make_our_turn(buffer, game, scene, current_scene[0]);
     }
     sfRenderWindow_display(buffer->window);
     game->fighting = true;
+    /*if (game->player->pokemon[game->fight->fighting_pokemon]->hp <= 35 || game->fight->opponent_pokemon->hp <= 35) {
+        init_won();
+    }*/
 }

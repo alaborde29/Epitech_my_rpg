@@ -15,7 +15,8 @@ int check_button(button_t *button, sfVector2f click_position)
     return (0);
 }
 
-void check_buttons(scene_t *scene, framebuffer_t *buffer, int *current_scene)
+void check_buttons(scene_t *scene, framebuffer_t *buffer, \
+int *current_scene, game_t *game)
 {
     int initial_scene = current_scene[0];
     sfVector2f click_position = {buffer->event.mouseButton.x, \
@@ -25,7 +26,7 @@ buffer->event.mouseButton.y};
         if (check_button(scene[current_scene[0]].buttons[i], \
 click_position) == 1) {
             scene[current_scene[0]].buttons[i]->callback(current_scene, \
-scene, buffer);
+scene, buffer, game);
         }
         if (initial_scene != current_scene[0]) {
             scene[initial_scene].buttons[i]->clicked = false;
