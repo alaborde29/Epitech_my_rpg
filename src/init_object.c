@@ -7,6 +7,16 @@
 
 #include "rpg.h"
 
+sfIntRect init_rect(int width, int height, int x, int y)
+{
+    sfIntRect rect;
+    rect.width = width;
+    rect.height = height;
+    rect.left = x;
+    rect.top = y;
+    return (rect);
+}
+
 int init_object(game_object_t *obj, char *path, \
 sfVector2f position, sfIntRect rect)
 {

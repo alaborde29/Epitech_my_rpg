@@ -9,6 +9,7 @@
 #define RPG_H_
 
 #include "my.h"
+#include "tiles.h"
 #include <SFML/Audio.h>
 #include <SFML/Graphics.h>
 #include <stdlib.h>
@@ -134,11 +135,14 @@ typedef struct game_object_s
     sfClock *clock;
     sfTime time;
     float seconds;
+    tile_t tile;
 }game_object_t;
 
 struct scene_s
 {
     struct game_object_s **objs;
+    struct game_object_s **ground_map;
+    struct game_object_s **above_map;
     struct button_s **buttons;
     sfMusic *music;
 };
@@ -294,5 +298,29 @@ void make_our_turn(framebuffer_t *buffer, game_t *game, \
 scene_t *scene, int current_scene);
 
 void set_text(pokemon_t *pokemon, attack_t *attack);
+
+/*init tiles*/
+
+game_object_t **init_tile(char *map_path);
+
+tile_t *init_tile_tab(void);
+
+int draw_map(framebuffer_t *framebuffer, scene_t scene, char *map_path);
+
+/*utilities functions*/
+
+int count_str_lines(char *str);
+
+char *read_file(char *path, char *buffer);
+
+int linelen_from_n_line(char *str, int line);
+
+int count_alpha_letter(char *str);
+
+sfIntRect init_rect(int width, int height, int x, int y);
+
+game_object_t **init_tile_list(void);
+
+int draw_map(framebuffer_t *framebuffer, scene_t scene, char *map_path);
 
 #endif /* !RPG_H_ */

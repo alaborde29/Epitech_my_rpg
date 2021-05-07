@@ -48,6 +48,9 @@ SRC		=	src/main.c					\
 			src/create_text.c			\
 			src/make_our_turn.c			\
 			src/set_text.c				\
+			src/map/draw_map.c			\
+			src/map/init_tile_list.c	\
+			src/map/utilities.c			\
 
 CC 		= 	gcc
 
