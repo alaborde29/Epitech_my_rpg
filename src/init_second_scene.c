@@ -41,5 +41,6 @@ int init_second_scene(scene_t *scene)
     scene[1].music = NULL;
     if (init_buttons_2(scene) == -1 || init_objs_2(scene) == -1)
         return (-1);
+    scene[1].ground_map = init_tile_list();
     return (0);
 }
