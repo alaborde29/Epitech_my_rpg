@@ -58,11 +58,11 @@ int init_fight_button(scene_t *scene)
 (sfVector2f){110, 37.5});
     init_button_value(scene[3].buttons[0], &attack_action);
     if (init_button(scene[3].buttons[1], (sfVector2f){1720, 800}, \
-(sfVector2f){220, 75}, "assets/pokemon.png") == -1)
+(sfVector2f){220, 75}, "assets/catch.png") == -1)
         return (-1);
     sfRectangleShape_setOrigin(scene[3].buttons[1]->rect, \
 (sfVector2f){110, 37.5});
-    init_button_value(scene[3].buttons[1], &switch_to_game);
+    init_button_value(scene[3].buttons[1], &catch_pokemon);
     init_fight_button2(scene);
     scene[3].buttons[4] = NULL;
     return (0);

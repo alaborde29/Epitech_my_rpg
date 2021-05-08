@@ -50,6 +50,7 @@ void reset_fight(game_t *game)
     game->fight->attack->second = false;
     sfClock_destroy(game->fight->win_clock);
     game->fight->win_clock = NULL;
+    game->fight->fighting_pokemon = 0;
     game->fight->opponent_pokemon->sprite = NULL;
     check_xp_pokemon(game);
     reset_pokemon_player(game->player);

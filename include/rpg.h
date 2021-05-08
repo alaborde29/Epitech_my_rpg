@@ -351,6 +351,9 @@ int pick_random_pokemon(int nb_pokemons);
 
 void destroy_fight(fight_t *fight);
 
+void catch_pokemon(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer, game_t *game);
+
 /*init tiles*/
 
 game_object_t **init_tile(char *map_path);
