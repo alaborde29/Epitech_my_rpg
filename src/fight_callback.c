@@ -36,7 +36,7 @@ framebuffer_t *buffer, game_t *game)
 {
     int nb = rand() % 3;
 
-    if (nb == 2) {
+    if (nb == 2 && game->player->nb_pokemon < 6) {
         dup_pokemon(game->fight->opponent_pokemon, \
 game->player->pokemon[game->fight->fighting_pokemon + 1]);
         game->player->nb_pokemon++;
