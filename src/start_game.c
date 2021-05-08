@@ -25,7 +25,7 @@ void start_game(framebuffer_t *buffer, scene_t *scene, game_t *game)
         if (current_scene == 3)
             fight_scene(scene, buffer, game, &current_scene);
         if (current_scene == 4)
-            inventory(scene, buffer, &current_scene);
+            inventory(scene, buffer, game, &current_scene);
         if (current_scene == 5)
             htp_scene(buffer, scene, &current_scene);
     }
