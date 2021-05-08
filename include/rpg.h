@@ -159,6 +159,7 @@ struct scene_s
     struct game_object_s **ground_map;
     struct game_object_s **above_map;
     struct button_s **buttons;
+    game_t *game;
     sfMusic *music;
 };
 
@@ -172,6 +173,8 @@ struct game
     bool start;
     bool fighting;
     int nb_pokeball;
+    sfText *pokeball_text;
+    sfFont *pokeball_font;
 };
 
 //Functions of the project
@@ -292,7 +295,8 @@ int init_fourth_scene(scene_t *scene);
 void switch_to_inventory(int *current_scene, scene_t *scene, \
 framebuffer_t *buffer);
 
-void inventory(scene_t *scene, framebuffer_t *buffer, int *current_scene);
+void inventory(scene_t *scene, framebuffer_t *buffer, game_t *game, \
+int *current_scene);
 
 void set_text_pos(fight_t *fight);
 
