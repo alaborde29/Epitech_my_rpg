@@ -14,8 +14,11 @@ framebuffer_t *buffer, game_t *game)
 
     if (nb == 1)
         switch_to_game(current_scene, scene, buffer, game);
-    else
+    else {
         game->fight->player_turn = false;
+        if (game->fight->opponent->clock != NULL)
+        sfClock_restart(game->fight->opponent->clock);
+    }
 }
 
 void attack_action(int *current_scene, scene_t *scene, \

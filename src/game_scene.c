@@ -14,6 +14,31 @@ void reset_pokemon_player(player_t *player)
     }
 }
 
+void do_for_all_poke(pokemon_t **pokemon)
+{
+    for (int i = 0; pokemon[i]; i++) {
+        pokemon[i]->level += 1;
+        pokemon[i]->xp = 0;
+        pokemon[i]->first_damage += 1;
+        pokemon[i]->second_damage += 1;
+        pokemon[i]->hp_max += 5;
+        pokemon[i]->hp = pokemon[i]->hp_max;
+    }
+}
+
+void check_xp_pokemon(game_t *game)
+{
+    if (game->player->pokemon[game->fight->fighting_pokemon]->xp == 100) {
+        game->player->pokemon[game->fight->fighting_pokemon]->level += 1;
+        game->player->pokemon[game->fight->fighting_pokemon]->xp = 0;
+        game->player->pokemon[game->fight->fighting_pokemon]->first_damage += 1;
+        game->player->pokemon[game->fight->fighting_pokemon]->\
+second_damage += 1;
+        game->player->pokemon[game->fight->fighting_pokemon]->hp_max += 5;
+        do_for_all_poke(game->pokemon);
+    }
+}
+
 void reset_fight(game_t *game)
 {
     game->fighting = false;
@@ -26,6 +51,7 @@ void reset_fight(game_t *game)
     sfClock_destroy(game->fight->win_clock);
     game->fight->win_clock = NULL;
     game->fight->opponent_pokemon->sprite = NULL;
+    check_xp_pokemon(game);
     reset_pokemon_player(game->player);
 }
 
@@ -37,7 +63,6 @@ game_t *game, int *current_scene)
         starter_choice(game, buffer);
     }
     else {
-        dup_pokemon(game->starter->pokemon[0], game->fight->opponent_pokemon);
         if (game->fighting == true) {
             destroy_pokemon(game->fight->opponent_pokemon);
             reset_fight(game);

@@ -48,6 +48,8 @@ game_t *create_game(void)
     game->starter = create_starter("assets/choose.png");
     game->player = create_player();
     game->fight = create_fight();
+    game->nb_pokemon = 3;
+    game->pokemon = create_all_pokemon(game->nb_pokemon, game->starter);
     game->start = false;
     game->fighting = false;
     game->fight->attack_choose = false;
