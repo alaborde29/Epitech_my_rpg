@@ -50,7 +50,7 @@ int init_button_3(scene_t *scene)
     scene[2].buttons[0]->over = false;
     scene[2].buttons[0]->clicked = false;
     if (init_button(scene[2].buttons[1], (sfVector2f){960, 590}, \
-(sfVector2f){220, 75}, "assets/button.png" ) == -1)
+(sfVector2f){220, 75}, "assets/button.png") == -1)
         return (-1);
     sfRectangleShape_setOrigin(scene[2].buttons[1]->rect, \
 (sfVector2f){110, 37.5});

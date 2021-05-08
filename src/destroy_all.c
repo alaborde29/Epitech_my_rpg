@@ -63,5 +63,6 @@ void destroy_all(scene_t *scene, framebuffer_t *buffer, game_t *game)
     destroy_player(game->player);
     destroy_starter(game->starter);
     destroy_fight(game->fight);
+    free(game->fight);
     free(game);
 }

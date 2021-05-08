@@ -31,6 +31,8 @@ typedef struct scene_s scene_t;
 
 typedef enum type {FIRE, WATER, GRASS}TYPE;
 
+typedef struct game game_t;
+
 typedef struct framebuffer
 {
     sfRenderWindow *window;
@@ -56,6 +58,19 @@ typedef struct pokemon_s
     TYPE type;
 }pokemon_t;
 
+typedef struct attack_s
+{
+    sfSprite *first_rect;
+    sfSprite *second_rect;
+    sfTexture *rect_texture;
+    sfText *first_attack_name;
+    sfText *first_attack_damage;
+    sfText *second_attack_name;
+    sfText *second_attack_damage;
+    bool first;
+    bool second;
+}attack_t;
+
 typedef struct fight_s
 {
     pokemon_t *opponent_pokemon;
@@ -72,8 +87,11 @@ typedef struct fight_s
     sfText *wait;
     sfText *fight;
     bool player_turn;
-    bool attack;
+    bool attack_choose;
     bool run;
+    attack_t *attack;
+    int fighting_pokemon;
+    sfClock *win_clock;
 }fight_t;
 
 typedef struct starter_s
@@ -103,7 +121,7 @@ typedef struct button_s
     sfVector2f original_size;
     bool over;
     bool clicked;
-    void (*callback)(int *, scene_t *, framebuffer_t *);
+    void (*callback)(int *, scene_t *, framebuffer_t *, game_t *);
 }button_t;
 
 typedef struct game_object_s
@@ -117,25 +135,26 @@ typedef struct game_object_s
     sfClock *clock;
     sfTime time;
     float seconds;
+    tile_t tile;
 }game_object_t;
 
 struct scene_s
 {
     struct game_object_s **objs;
-    struct game_object_s ***ground_map;
-    struct game_object_s ***above_map;
+    struct game_object_s **ground_map;
+    struct game_object_s **above_map;
     struct button_s **buttons;
     sfMusic *music;
 };
 
-typedef struct game
+struct game
 {
     player_t *player;
     starter_t *starter;
     fight_t *fight;
     bool start;
     bool fighting;
-}game_t;
+};
 
 //Functions of the project
 
@@ -158,8 +177,6 @@ sfVector2f size, char *path);
 int init_object(game_object_t *obj, char *path, \
 sfVector2f position, sfIntRect rect);
 
-sfIntRect init_rect(int width, int height, int x, int y);
-
 void draw_scene(framebuffer_t *buffer, scene_t *scene, int current_scene);
 
 void destroy_all(scene_t *scene, framebuffer_t *buffer, game_t *game);
@@ -167,16 +184,19 @@ void destroy_all(scene_t *scene, framebuffer_t *buffer, game_t *game);
 int init_text(button_t *button, char *path, \
 sfVector2f position, char *string);
 
-void quit_game(int *current_scene, scene_t *scene, framebuffer_t *buffer);
+void quit_game(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer, game_t *game);
 
-void switch_to_game(int *current_scene, scene_t *scene, framebuffer_t *buffer);
+void switch_to_game(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer, game_t *game);
 
 int button_is_clicked(button_t *button, sfVector2f click_position);
 
 void check_event(framebuffer_t *buffer, scene_t *scene, \
 game_t *game, int *current_scene);
 
-void check_buttons(scene_t *scene, framebuffer_t *buffer, int *current_scene);
+void check_buttons(scene_t *scene, framebuffer_t *buffer, \
+int *current_scene, game_t *game);
 
 int init_second_scene(scene_t *scene);
 
@@ -246,7 +266,8 @@ char *create_level_string(int level);
 
 void switch_to_fight(int *current_scene, scene_t *scene, framebuffer_t *buffer);
 
-void switch_to_pause(int *current_scene, scene_t *scene, framebuffer_t *buffer);
+void switch_to_pause(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer, game_t *game);
 
 int init_fourth_scene(scene_t *scene);
 
@@ -261,19 +282,30 @@ void set_fighting_pokemon_text(pokemon_t *pokemon, fight_t *fight);
 
 void set_fighting_pokemon(pokemon_t *pokemon, pokemon_t *opponent_pokemon);
 
-void run_action(int *current_scene, scene_t *scene, framebuffer_t *buffer);
+void run_action(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer, game_t *game);
 
 void dup_pokemon(pokemon_t *initial_pokemon, pokemon_t *dest_pokemon);
 
 sfText *create_text(sfVector2f pos, char *string, sfFont *font, sfColor color);
 
+void attack_action(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer, game_t *game);
+
+void display_text(framebuffer_t *buffer, sfText *text);
+
+void make_our_turn(framebuffer_t *buffer, game_t *game, \
+scene_t *scene, int current_scene);
+
+void set_text(pokemon_t *pokemon, attack_t *attack);
+
 /*init tiles*/
 
-int init_tile(game_object_t ***map, char *map_path);
+game_object_t **init_tile(char *map_path);
 
 tile_t *init_tile_tab(void);
 
-void draw_map(framebuffer_t *framebuffer, scene_t scene);
+int draw_map(framebuffer_t *framebuffer, scene_t scene, char *map_path);
 
 /*utilities functions*/
 
@@ -281,8 +313,14 @@ int count_str_lines(char *str);
 
 char *read_file(char *path, char *buffer);
 
-game_object_t **setup_tile_map(char *map_buffer);
-
 int linelen_from_n_line(char *str, int line);
+
+int count_alpha_letter(char *str);
+
+sfIntRect init_rect(int width, int height, int x, int y);
+
+game_object_t **init_tile_list(void);
+
+int draw_map(framebuffer_t *framebuffer, scene_t scene, char *map_path);
 
 #endif /* !RPG_H_ */

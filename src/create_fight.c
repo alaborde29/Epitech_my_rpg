@@ -7,35 +7,35 @@
 
 #include "rpg.h"
 
-void set_font(fight_t *fight)
+attack_t *create_attack(sfFont *font)
 {
-    sfText_setFont(fight->name, fight->font);
-    sfText_setFont(fight->opponent_name, fight->font);
-    sfText_setFont(fight->hp, fight->font);
-    sfText_setFont(fight->opponent_hp, fight->font);
-    sfText_setFont(fight->level, fight->font);
-    sfText_setFont(fight->opponent_level, fight->font);
-    sfText_setFont(fight->wait, fight->font);
-    sfText_setFont(fight->fight, fight->font);
-}
+    attack_t *attack = malloc(sizeof(attack_t));
 
-void set_color(fight_t *fight)
-{
-    sfText_setColor(fight->name, sfBlack);
-    sfText_setColor(fight->opponent_name, sfBlack);
-    sfText_setColor(fight->hp, sfBlack);
-    sfText_setColor(fight->opponent_hp, sfBlack);
-    sfText_setColor(fight->level, sfBlack);
-    sfText_setColor(fight->opponent_level, sfBlack);
-    sfText_setColor(fight->wait, sfWhite);
-    sfText_setColor(fight->fight, sfWhite);
+    attack->first_rect = sfSprite_create();
+    attack->second_rect = sfSprite_create();
+    attack->rect_texture = \
+sfTexture_createFromFile("assets/attack_rect.png", NULL);
+    sfSprite_setTexture(attack->first_rect, attack->rect_texture, sfTrue);
+    sfSprite_setTexture(attack->second_rect, attack->rect_texture, sfTrue);
+    attack->first_attack_name = create_text((sfVector2f){0, 0}, \
+NULL, font, sfBlack);
+    attack->first_attack_damage = create_text((sfVector2f){0, 0}, \
+NULL, font, sfBlack);
+    attack->second_attack_name = create_text((sfVector2f){0, 0}, \
+NULL, font, sfBlack);
+    attack->second_attack_damage = create_text((sfVector2f){0, 0}, \
+NULL, font, sfBlack);
+    return (attack);
 }
 
 void init_sprite(fight_t *fight)
 {
+    fight->font = sfFont_createFromFile("assets/godzilla.ttf");
     fight->hp_texture = sfTexture_createFromFile("assets/hp.png", NULL);
     fight->hp_sprite = sfSprite_create();
     fight->opponent_hp_sprite = sfSprite_create();
+    fight->fighting_pokemon = 0;
+    fight->win_clock = sfClock_create();
     sfSprite_setTexture(fight->hp_sprite, fight->hp_texture, sfTrue);
     sfSprite_setTexture(fight->opponent_hp_sprite, fight->hp_texture, sfTrue);
     sfSprite_setScale(fight->hp_sprite, (sfVector2f){0.1, 0.1});
@@ -49,8 +49,8 @@ fight_t *create_fight(void)
     fight_t *fight = malloc(sizeof(fight_t));
 
     init_sprite(fight);
+    fight->attack = create_attack(fight->font);
     fight->opponent_pokemon = malloc(sizeof(pokemon_t));
-    fight->font = sfFont_createFromFile("assets/godzilla.ttf");
     fight->name = create_text((sfVector2f){0, 0}, NULL, fight->font, sfBlack);
     fight->opponent_name = create_text((sfVector2f){0, 0}, \
 NULL, fight->font, sfBlack);
@@ -68,6 +68,17 @@ NULL, fight->font, sfBlack);
     return (fight);
 }
 
+void destroy_attack(attack_t *attack)
+{
+    sfSprite_destroy(attack->first_rect);
+    sfSprite_destroy(attack->second_rect);
+    sfTexture_destroy(attack->rect_texture);
+    sfText_destroy(attack->first_attack_name);
+    sfText_destroy(attack->first_attack_damage);
+    sfText_destroy(attack->second_attack_name);
+    sfText_destroy(attack->second_attack_damage);
+}
+
 void destroy_fight(fight_t *fight)
 {
     sfFont_destroy(fight->font);
@@ -81,4 +92,6 @@ void destroy_fight(fight_t *fight)
     sfTexture_destroy(fight->hp_texture);
     sfSprite_destroy(fight->hp_sprite);
     sfSprite_destroy(fight->opponent_hp_sprite);
+    destroy_attack(fight->attack);
+    free(fight->attack);
 }

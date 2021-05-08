@@ -144,6 +144,12 @@
 
 #define TEST_1 "assets/map_files/Test_big_flatzone"
 #define TEST_2 "assets/map_files/Test_small_flatzone"
+#define TEST_3 "assets/map_files/Test_a_lot_of_tiles"
+
+/*TILE SPRITE*/
+
+#define TILE_SHEET_GROUND "assets/tileset/tileset_ground.png"
+#define TILE_SHEET_ABOVE "assets/tileset/tileset_above.png"
 
 /* STRUCTS */
 

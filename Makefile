@@ -41,15 +41,16 @@ SRC		=	src/main.c					\
 			src/create_fight.c			\
 			src/my_itoc.c				\
 			src/create_fight_string.c	\
-			src/map/draw_map.c			\
-			src/map/init_tile.c			\
-			src/map/setup_tile_tab.c	\
-			src/map/utilities.c			\
 			src/init_fourth_scene.c 	\
 			src/inventory.c 			\
 			src/set_fight.c				\
 			src/fight_callback.c		\
 			src/create_text.c			\
+			src/make_our_turn.c			\
+			src/set_text.c				\
+			src/map/draw_map.c			\
+			src/map/init_tile_list.c	\
+			src/map/utilities.c			\
 
 CC 		= 	gcc
 
@@ -57,7 +58,7 @@ OBJ		=	$(SRC:.c=.o)
 
 NAME	=	my_rpg
 
-CFLAGS	=	-Wall -Werror -Wshadow -Wextra -Iinclude/
+CFLAGS	=	-Wall -Werror -Wshadow -Wextra -I include/
 
 LDFLAGS	=	-L./lib/ -lmy -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 
