@@ -171,6 +171,7 @@ struct game
     int nb_pokemon;
     bool start;
     bool fighting;
+    int nb_pokeball;
 };
 
 //Functions of the project

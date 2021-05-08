@@ -35,12 +35,14 @@ void catch_pokemon(int *current_scene, scene_t *scene, \
 framebuffer_t *buffer, game_t *game)
 {
     int nb = rand() % 3;
+    game->nb_pokeball = 10;
 
-    if (nb == 2 && game->player->nb_pokemon < 6) {
+    if (nb == 2 && game->player->nb_pokemon < 6 && game->nb_pokeball > 0) {
         dup_pokemon(game->fight->opponent_pokemon, \
 game->player->pokemon[game->fight->fighting_pokemon + 1]);
         game->player->nb_pokemon++;
         switch_to_game(current_scene, scene, buffer, game);
+        game->nb_pokeball--;
     } else {
         game->fight->player_turn = false;
         if (game->fight->opponent->clock != NULL)
