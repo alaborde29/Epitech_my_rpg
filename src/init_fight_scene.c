@@ -45,7 +45,7 @@ int init_fight_button2(scene_t *scene)
         return (-1);
     sfRectangleShape_setOrigin(scene[3].buttons[3]->rect, \
 (sfVector2f){110, 37.5});
-    init_button_value(scene[3].buttons[3], &switch_to_game);
+    init_button_value(scene[3].buttons[3], &switch_to_inventory);
     return (0);
 }
 
