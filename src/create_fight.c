@@ -24,6 +24,8 @@ NULL, fight->font, sfBlack);
 "What do you want to do ?", fight->font, sfWhite);
     fight->win_text = create_text((sfVector2f){75, 775}, \
 "You win !", fight->font, sfWhite);
+    fight->loose_text = create_text((sfVector2f){75, 775}, \
+"Oh no, you loose !", fight->font, sfWhite);
 }
 
 void init_sprite(fight_t *fight)

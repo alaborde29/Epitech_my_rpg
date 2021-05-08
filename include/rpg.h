@@ -102,6 +102,7 @@ typedef struct fight_s
     sfClock *win_clock;
     sfTime win_time;
     sfText *win_text;
+    sfText *loose_text;
     float second;
     bool loose;
     bool win;
@@ -325,6 +326,8 @@ attack_t *create_attack(sfFont *font);
 
 void switch_to_menu(int *current_scene, scene_t *scene, \
 framebuffer_t *buffer, game_t *game);
+
+void display_end_fight(framebuffer_t *buffer, game_t *game);
 
 /*init tiles*/
 

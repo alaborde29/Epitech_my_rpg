@@ -7,6 +7,13 @@
 
 #include "rpg.h"
 
+void reset_pokemon_player(player_t *player)
+{
+    for (int i = 0; i < player->nb_pokemon; i++) {
+        player->pokemon[i]->hp = player->pokemon[i]->hp_max;
+    }
+}
+
 void reset_fight(game_t *game)
 {
     game->fighting = false;
@@ -19,6 +26,7 @@ void reset_fight(game_t *game)
     sfClock_destroy(game->fight->win_clock);
     game->fight->win_clock = NULL;
     game->fight->opponent_pokemon->sprite = NULL;
+    reset_pokemon_player(game->player);
 }
 
 void game_scene(scene_t *scene, framebuffer_t *buffer, \
