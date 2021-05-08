@@ -144,7 +144,10 @@
 
 #define TEST_1 "assets/map_files/Test_big_flatzone"
 #define TEST_2 "assets/map_files/Test_small_flatzone"
+<<<<<<< HEAD
 #define TEST_3 "assets/map_files/Test_a_lot_of_tiles"
+=======
+>>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
 
 /*TILE SPRITE*/
 

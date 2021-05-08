@@ -14,6 +14,8 @@ framebuffer_t *buffer, game_t *game)
 
     if (nb == 1)
         switch_to_game(current_scene, scene, buffer, game);
+    else
+        game->fight->player_turn = false;
 }
 
 void attack_action(int *current_scene, scene_t *scene, \
