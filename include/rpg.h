@@ -92,6 +92,15 @@ typedef struct fight_s
     attack_t *attack;
     int fighting_pokemon;
     sfClock *win_clock;
+<<<<<<< HEAD
+=======
+    sfTime win_time;
+    sfText *win_text;
+    sfText *loose_text;
+    float second;
+    bool loose;
+    bool win;
+>>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
 }fight_t;
 
 typedef struct starter_s
@@ -299,6 +308,25 @@ scene_t *scene, int current_scene);
 
 void set_text(pokemon_t *pokemon, attack_t *attack);
 
+<<<<<<< HEAD
+=======
+int init_htp_scene(scene_t *scene);
+
+void htp_scene(framebuffer_t *buffer, scene_t *scene, int *current_scene);
+
+void switch_to_htp(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer, game_t *game);
+
+void make_opponent_turn(game_t *game);
+
+attack_t *create_attack(sfFont *font);
+
+void switch_to_menu(int *current_scene, scene_t *scene, \
+framebuffer_t *buffer, game_t *game);
+
+void display_end_fight(framebuffer_t *buffer, game_t *game);
+
+>>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
 /*init tiles*/
 
 game_object_t **init_tile(char *map_path);

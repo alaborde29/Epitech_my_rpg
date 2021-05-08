@@ -9,23 +9,23 @@
 
 attack_t *create_attack(sfFont *font)
 {
-    attack_t *attack = malloc(sizeof(attack_t));
-
-    attack->first_rect = sfSprite_create();
-    attack->second_rect = sfSprite_create();
-    attack->rect_texture = \
-sfTexture_createFromFile("assets/attack_rect.png", NULL);
-    sfSprite_setTexture(attack->first_rect, attack->rect_texture, sfTrue);
-    sfSprite_setTexture(attack->second_rect, attack->rect_texture, sfTrue);
-    attack->first_attack_name = create_text((sfVector2f){0, 0}, \
-NULL, font, sfBlack);
-    attack->first_attack_damage = create_text((sfVector2f){0, 0}, \
-NULL, font, sfBlack);
-    attack->second_attack_name = create_text((sfVector2f){0, 0}, \
-NULL, font, sfBlack);
-    attack->second_attack_damage = create_text((sfVector2f){0, 0}, \
-NULL, font, sfBlack);
-    return (attack);
+    fight->name = create_text((sfVector2f){0, 0}, NULL, fight->font, sfBlack);
+    fight->opponent_name = create_text((sfVector2f){0, 0}, \
+NULL, fight->font, sfBlack);
+    fight->hp = create_text((sfVector2f){0, 0}, NULL, fight->font, sfBlack);
+    fight->opponent_hp = create_text((sfVector2f){0, 0}, \
+NULL, fight->font, sfBlack);
+    fight->level = create_text((sfVector2f){0, 0}, NULL, fight->font, sfBlack);
+    fight->opponent_level = create_text((sfVector2f){0, 0}, \
+NULL, fight->font, sfBlack);
+    fight->wait = create_text((sfVector2f){75, 775}, \
+"Waiting opponent turn...", fight->font, sfWhite);
+    fight->fight = create_text((sfVector2f){75, 775}, \
+"What do you want to do ?", fight->font, sfWhite);
+    fight->win_text = create_text((sfVector2f){75, 775}, \
+"You win !", fight->font, sfWhite);
+    fight->loose_text = create_text((sfVector2f){75, 775}, \
+"Oh no, you loose !", fight->font, sfWhite);
 }
 
 void init_sprite(fight_t *fight)
