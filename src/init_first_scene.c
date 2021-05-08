@@ -75,12 +75,7 @@ int init_button_1(scene_t *scene)
     scene[0].buttons[0]->callback = &switch_to_game;
     scene[0].buttons[0]->over = false;
     scene[0].buttons[0]->clicked = false;
-<<<<<<< HEAD
-    if (init_button(scene[0].buttons[1], (sfVector2f){960, 590}, \
-(sfVector2f){220, 75}, "assets/button.png") == -1)
-=======
     if (init_button_1_bis(scene) == -1)
->>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
         return (-1);
     if (init_text_1(scene) == -1)
         return (-1);
