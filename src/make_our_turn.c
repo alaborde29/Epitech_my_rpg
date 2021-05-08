@@ -47,7 +47,10 @@ void set_attack(pokemon_t *pokemon, fight_t *fight)
 void make_our_turn(framebuffer_t *buffer, game_t *game, \
 scene_t *scene, int current_scene)
 {
-    display_text(buffer, game->fight->fight);
+    if (game->fight->win == false)
+        display_text(buffer, game->fight->fight);
+    else
+        display_text(buffer, game->fight->win_text);
     if (game->fight->attack_choose == true) {
         set_attack(game->player->pokemon[game->fight->fighting_pokemon], \
 game->fight);
@@ -57,11 +60,15 @@ game->fight);
 game->player->pokemon[game->fight->fighting_pokemon]->first_damage;
             game->fight->attack->first = false;
             game->fight->player_turn = false;
+            if (game->fight->opponent->clock != NULL)
+                sfClock_restart(game->fight->opponent->clock);
         } else if (game->fight->attack->second == true) {
             game->fight->opponent_pokemon->hp -= \
 game->player->pokemon[game->fight->fighting_pokemon]->second_damage;
-            game->fight->attack->first = false;
+            game->fight->attack->second = false;
             game->fight->player_turn = false;
+            if (game->fight->opponent->clock != NULL)
+                sfClock_restart(game->fight->opponent->clock);
         }
     } else
         display_button(buffer, scene[current_scene].buttons);
