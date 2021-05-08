@@ -35,10 +35,11 @@ scene_t *scene, int *current_scene)
 {
     sfRenderWindow_drawSprite(buffer->window, \
 scene[current_scene[0]].objs[0]->sprite, NULL);
-    set_fighting_pokemon(game->player->pokemon[0], \
+    set_fighting_pokemon(game->player->pokemon[game->fight->fighting_pokemon], \
 game->fight->opponent_pokemon);
-    set_fighting_pokemon_text(game->player->pokemon[0], game->fight);
-    draw_fight(game->player->pokemon[0], \
+    set_fighting_pokemon_text(game->player->pokemon\
+[game->fight->fighting_pokemon], game->fight);
+    draw_fight(game->player->pokemon[game->fight->fighting_pokemon], \
 game->fight->opponent_pokemon, buffer, game->fight);
     sfRenderWindow_drawSprite(buffer->window, \
 scene[current_scene[0]].objs[1]->sprite, NULL);
@@ -53,7 +54,10 @@ game_t *game, int *current_scene)
     make_turn(game, buffer, scene, current_scene[0]);
     sfRenderWindow_display(buffer->window);
     game->fighting = true;
-    if (game->player->pokemon[game->fight->fighting_pokemon]->hp <= 0) {
+    if (game->player->pokemon[game->fight->fighting_pokemon]->hp <= 0 && \
+game->fight->fighting_pokemon + 1 != game->player->nb_pokemon) {
+        game->fight->fighting_pokemon++;
+    } else if (game->player->pokemon[game->fight->fighting_pokemon]->hp <= 0) {
         init_loose(game, buffer, current_scene, scene);
         game->fight->loose = true;
     }
