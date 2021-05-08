@@ -26,5 +26,10 @@ void start_game(framebuffer_t *buffer, scene_t *scene, game_t *game)
             fight_scene(scene, buffer, game, &current_scene);
         if (current_scene == 4)
             inventory(scene, buffer, &current_scene);
+<<<<<<< HEAD
+=======
+        if (current_scene == 5)
+            htp_scene(buffer, scene, &current_scene);
+>>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
     }
 }

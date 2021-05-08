@@ -40,7 +40,7 @@ game_t *game, int *current_scene)
         dup_pokemon(game->starter->pokemon[0], game->fight->opponent_pokemon);
         if (game->fighting == true) {
             destroy_pokemon(game->fight->opponent_pokemon);
-            game->fighting = false;
+            reset_fight(game);
         }
         sfRenderWindow_setView(buffer->window, buffer->view);
         sfRenderWindow_clear(buffer->window, sfBlack);

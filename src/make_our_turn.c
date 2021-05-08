@@ -60,11 +60,15 @@ game->fight);
 game->player->pokemon[game->fight->fighting_pokemon]->first_damage;
             game->fight->attack->first = false;
             game->fight->player_turn = false;
+            if (game->fight->opponent->clock != NULL)
+                sfClock_restart(game->fight->opponent->clock);
         } else if (game->fight->attack->second == true) {
             game->fight->opponent_pokemon->hp -= \
 game->player->pokemon[game->fight->fighting_pokemon]->second_damage;
-            game->fight->attack->first = false;
+            game->fight->attack->second = false;
             game->fight->player_turn = false;
+            if (game->fight->opponent->clock != NULL)
+                sfClock_restart(game->fight->opponent->clock);
         }
     } else
         display_button(buffer, scene[current_scene].buttons);
