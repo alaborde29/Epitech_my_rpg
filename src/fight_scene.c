@@ -34,6 +34,14 @@ int *current_scene, scene_t *scene)
     }
 }
 
+void display_end_fight(framebuffer_t *buffer, game_t *game)
+{
+    if (game->fight->win == true)
+        display_text(buffer, game->fight->win_text);
+    if (game->fight->loose == true)
+        display_text(buffer, game->fight->loose_text);
+}
+
 void set_and_draw_all(framebuffer_t *buffer, game_t *game, \
 scene_t *scene, int *current_scene)
 {
@@ -55,19 +63,22 @@ game_t *game, int *current_scene)
     check_button_state(buffer, scene, current_scene[0]);
     set_and_draw_all(buffer, game, scene, current_scene);
     if (game->fight->player_turn == false) {
-        if (game->fight->win == false) {
+        if (game->fight->win == false && game->fight->loose == false) {
             display_text(buffer, game->fight->wait);
             make_opponent_turn(game);
         }
         else
-            display_text(buffer, game->fight->win_text);
+            display_end_fight(buffer, game);
     } else {
         make_our_turn(buffer, game, scene, current_scene[0]);
     }
     sfRenderWindow_display(buffer->window);
     game->fighting = true;
-    if (game->player->pokemon[game->fight->fighting_pokemon]->hp <= 0 || \
-game->fight->opponent_pokemon->hp <= 0) {
+    if (game->player->pokemon[game->fight->fighting_pokemon]->hp <= 0) {
+        init_won(game, buffer, current_scene, scene);
+        game->fight->loose = true;
+    }
+    if (game->fight->opponent_pokemon->hp <= 0) {
         init_won(game, buffer, current_scene, scene);
         game->fight->win = true;
     }

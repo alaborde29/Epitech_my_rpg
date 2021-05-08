@@ -47,10 +47,10 @@ void set_attack(pokemon_t *pokemon, fight_t *fight)
 void make_our_turn(framebuffer_t *buffer, game_t *game, \
 scene_t *scene, int current_scene)
 {
-    if (game->fight->win == false)
+    if (game->fight->win == false && game->fight->loose == false)
         display_text(buffer, game->fight->fight);
     else
-        display_text(buffer, game->fight->win_text);
+        display_end_fight(buffer, game);
     if (game->fight->attack_choose == true) {
         set_attack(game->player->pokemon[game->fight->fighting_pokemon], \
 game->fight);
