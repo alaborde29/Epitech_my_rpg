@@ -52,6 +52,7 @@ typedef struct pokemon_s
     int hp;
     int hp_max;
     int level;
+    int xp;
     sfSprite *sprite;
     sfTexture *back_texture;
     sfTexture *front_texture;
@@ -166,6 +167,8 @@ struct game
     player_t *player;
     starter_t *starter;
     fight_t *fight;
+    pokemon_t **pokemon;
+    int nb_pokemon;
     bool start;
     bool fighting;
 };
@@ -328,6 +331,25 @@ void switch_to_menu(int *current_scene, scene_t *scene, \
 framebuffer_t *buffer, game_t *game);
 
 void display_end_fight(framebuffer_t *buffer, game_t *game);
+
+void display_button(framebuffer_t *buffer, button_t **buttons);
+
+void display_text(framebuffer_t *buffer, sfText *text);
+
+void make_turn(game_t *game, framebuffer_t *buffer, \
+scene_t *scene, int current_scene);
+
+void init_loose(game_t *game, framebuffer_t *buffer, \
+int *current_scene, scene_t *scene);
+
+void init_won(game_t *game, framebuffer_t *buffer, \
+int *current_scene, scene_t *scene);
+
+pokemon_t **create_all_pokemon(int nb_pokemons, starter_t *starter);
+
+int pick_random_pokemon(int nb_pokemons);
+
+void destroy_fight(fight_t *fight);
 
 /*init tiles*/
 

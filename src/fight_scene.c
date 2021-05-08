@@ -22,18 +22,6 @@ pokemon_t *opponent_pokemon, framebuffer_t *buffer, fight_t *fight)
     sfRenderWindow_drawText(buffer->window, fight->opponent_level, NULL);
 }
 
-void init_won(game_t *game, framebuffer_t *buffer, \
-int *current_scene, scene_t *scene)
-{
-    if (game->fight->win_clock == NULL)
-        game->fight->win_clock = sfClock_create();
-    game->fight->win_time = sfClock_getElapsedTime(game->fight->win_clock);
-    game->fight->second = game->fight->win_time.microseconds / 1000000.0;
-    if (game->fight->second > 2.0) {
-        switch_to_game(current_scene, scene, buffer, game);
-    }
-}
-
 void display_end_fight(framebuffer_t *buffer, game_t *game)
 {
     if (game->fight->win == true)
@@ -62,20 +50,11 @@ game_t *game, int *current_scene)
     sfRenderWindow_clear(buffer->window, sfBlack);
     check_button_state(buffer, scene, current_scene[0]);
     set_and_draw_all(buffer, game, scene, current_scene);
-    if (game->fight->player_turn == false) {
-        if (game->fight->win == false && game->fight->loose == false) {
-            display_text(buffer, game->fight->wait);
-            make_opponent_turn(game);
-        }
-        else
-            display_end_fight(buffer, game);
-    } else {
-        make_our_turn(buffer, game, scene, current_scene[0]);
-    }
+    make_turn(game, buffer, scene, current_scene[0]);
     sfRenderWindow_display(buffer->window);
     game->fighting = true;
     if (game->player->pokemon[game->fight->fighting_pokemon]->hp <= 0) {
-        init_won(game, buffer, current_scene, scene);
+        init_loose(game, buffer, current_scene, scene);
         game->fight->loose = true;
     }
     if (game->fight->opponent_pokemon->hp <= 0) {

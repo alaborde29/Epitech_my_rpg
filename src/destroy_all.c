@@ -63,6 +63,8 @@ void destroy_all(scene_t *scene, framebuffer_t *buffer, game_t *game)
     destroy_player(game->player);
     destroy_starter(game->starter);
     destroy_fight(game->fight);
+    for (int i = 0; game->pokemon[i]; i++)
+    destroy_pokemon(game->pokemon[i]);
     free(game->fight);
     free(game);
 }

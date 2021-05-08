@@ -18,6 +18,7 @@ sfTexture_copy(initial_pokemon->front_texture);
     dest_pokemon->hp = initial_pokemon->hp;
     dest_pokemon->hp_max = initial_pokemon->hp_max;
     dest_pokemon->level = initial_pokemon->level;
+    dest_pokemon->xp = initial_pokemon->xp;
     dest_pokemon->first_attack = my_strdup(initial_pokemon->first_attack);
     dest_pokemon->first_damage = initial_pokemon->first_damage;
     dest_pokemon->second_attack = my_strdup(initial_pokemon->second_attack);

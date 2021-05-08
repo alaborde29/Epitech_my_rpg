@@ -58,11 +58,15 @@ buffer->event.mouseButton.x <= 1353) && \
 void switch_interface(framebuffer_t *buffer, scene_t *scene, \
 game_t *game, int *current_scene)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyEscape) && \
-(current_scene[0] == 1 || current_scene[0] == 3))
+    int nb = 0;
+
+    if (sfKeyboard_isKeyPressed(sfKeyEscape) && current_scene[0] == 1)
         switch_to_pause(current_scene, scene, buffer, game);
-    if (sfKeyboard_isKeyPressed(sfKeyC) && current_scene[0] == 1)
+    if (sfKeyboard_isKeyPressed(sfKeyC) && current_scene[0] == 1) {
+        nb = pick_random_pokemon(game->nb_pokemon);
+        dup_pokemon(game->pokemon[nb], game->fight->opponent_pokemon);
         switch_to_fight(current_scene, scene, buffer);
+    }
     if (sfKeyboard_isKeyPressed(sfKeyI) && current_scene[0] == 1)
         switch_to_inventory(current_scene, scene, buffer);
 }

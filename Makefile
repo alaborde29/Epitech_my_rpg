@@ -56,6 +56,12 @@ SRC		=	src/main.c					\
 			src/callback2.c				\
 			src/create_attack.c			\
 			src/make_opponent_turn.c	\
+			src/utils_fight.c			\
+			src/make_turn.c				\
+			src/init_end_turn.c			\
+			src/create_all_pokemon.c	\
+			src/pick_random_pokemon.c	\
+			src/destroy_fight.c			\
 
 CC 		= 	gcc
 
