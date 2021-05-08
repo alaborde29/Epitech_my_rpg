@@ -7,6 +7,20 @@
 
 #include "rpg.h"
 
+void reset_fight(game_t *game)
+{
+    game->fighting = false;
+    game->fight->win = false;
+    game->fight->loose = false;
+    game->fight->player_turn = true;
+    game->fight->attack_choose = false;
+    game->fight->attack->first = false;
+    game->fight->attack->second = false;
+    sfClock_destroy(game->fight->win_clock);
+    game->fight->win_clock = NULL;
+    game->fight->opponent_pokemon->sprite = NULL;
+}
+
 void game_scene(scene_t *scene, framebuffer_t *buffer, \
 game_t *game, int *current_scene)
 {
@@ -18,7 +32,7 @@ game_t *game, int *current_scene)
         dup_pokemon(game->starter->pokemon[0], game->fight->opponent_pokemon);
         if (game->fighting == true) {
             destroy_pokemon(game->fight->opponent_pokemon);
-            game->fighting = false;
+            reset_fight(game);
         }
         sfRenderWindow_setView(buffer->window, buffer->view);
         sfRenderWindow_clear(buffer->window, sfBlack);

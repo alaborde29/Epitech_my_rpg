@@ -51,6 +51,11 @@ SRC		=	src/main.c					\
 			src/map/draw_map.c			\
 			src/map/init_tile_list.c	\
 			src/map/utilities.c			\
+			src/init_htp_scene.c		\
+			src/htp_scene.c				\
+			src/callback2.c				\
+			src/create_attack.c			\
+			src/make_opponent_turn.c	\
 
 CC 		= 	gcc
 
