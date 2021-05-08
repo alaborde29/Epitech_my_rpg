@@ -37,12 +37,6 @@ int draw_map(framebuffer_t *framebuffer, scene_t scene, char *map_path)
     map_buffer = read_file(map_path, map_buffer);
     if (map_buffer == 0)
         return (0);
-<<<<<<< HEAD
     draw_tile_from_map(framebuffer, scene, map_buffer, (sfVector2f){0, 0});
-=======
-    sfRenderWindow_drawSprite(framebuffer->window, \
-    scene.ground_map[0]->sprite, NULL);
-    //draw_tile_from_map(framebuffer, scene, map_buffer, (sfVector2i){0, 0});
->>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
     return 0;
 }

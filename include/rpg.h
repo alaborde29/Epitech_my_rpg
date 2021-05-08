@@ -71,8 +71,6 @@ typedef struct attack_s
     bool second;
 }attack_t;
 
-<<<<<<< HEAD
-=======
 typedef struct opponent_s
 {
     sfClock *clock;
@@ -80,7 +78,6 @@ typedef struct opponent_s
     float seconds;
 }opponent_t;
 
->>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
 typedef struct fight_s
 {
     pokemon_t *opponent_pokemon;
@@ -101,24 +98,14 @@ typedef struct fight_s
     bool run;
     attack_t *attack;
     int fighting_pokemon;
-<<<<<<< HEAD
-    sfClock *win_clock;
-<<<<<<< HEAD
-=======
-=======
     opponent_t *opponent;
     sfClock *win_clock;
->>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
     sfTime win_time;
     sfText *win_text;
     sfText *loose_text;
     float second;
     bool loose;
     bool win;
-<<<<<<< HEAD
->>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
-=======
->>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
 }fight_t;
 
 typedef struct starter_s
@@ -326,11 +313,6 @@ scene_t *scene, int current_scene);
 
 void set_text(pokemon_t *pokemon, attack_t *attack);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
 int init_htp_scene(scene_t *scene);
 
 void htp_scene(framebuffer_t *buffer, scene_t *scene, int *current_scene);
@@ -347,10 +329,6 @@ framebuffer_t *buffer, game_t *game);
 
 void display_end_fight(framebuffer_t *buffer, game_t *game);
 
-<<<<<<< HEAD
->>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
-=======
->>>>>>> 7ec1eeb311a1da6a7256f34d9cdba0a352c23a10
 /*init tiles*/
 
 game_object_t **init_tile(char *map_path);
