@@ -12,7 +12,7 @@ int init_objs_2(scene_t *scene)
     if (init_object(scene[1].objs[0], "assets/player_spritesheet.png", \
 (sfVector2f){(1920 / 2) - 20, 1080 / 2 - 31}, (sfIntRect){0, 0, 34, 52}) == -1)
         return (-1);
-    sfSprite_setScale(scene[1].objs[0]->sprite, (sfVector2f){1.2, 1.2});
+    sfSprite_setScale(scene[1].objs[0]->sprite, (sfVector2f){0.5, 0.5});
     scene[1].objs[0]->clock = sfClock_create();
     scene[1].objs[0]->seconds = 0.1;
     scene[1].objs[0]->offset = 34;

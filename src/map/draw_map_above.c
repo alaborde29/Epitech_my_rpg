@@ -18,8 +18,8 @@ static const tile_t TILE_TAB[] = {
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
     {.id = 'D', .tile_pos = (sfVector2f){64, 2000}, \
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
-    {.id = 'E', .tile_pos = (sfVector2f){16, 2016}, \
-    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'E', .tile_pos = (sfVector2f){105, 10126}, \
+    .tile_size = (sfVector2f){38, 49}, .sheet = S_GROUND},
     {.id = 'F', .tile_pos = (sfVector2f){32, 2016}, \
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
     {.id = 'G', .tile_pos = (sfVector2f){64, 2016}, \
