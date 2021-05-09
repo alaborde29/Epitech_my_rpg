@@ -34,6 +34,21 @@ int init_buttons_2(scene_t *scene)
     return (0);
 }
 
+int init_map_buffer(scene_t *scene)
+{
+    char *map_buffer = NULL;
+
+    map_buffer = read_file(TEST_GROUND_4, map_buffer);
+    if (map_buffer == 0)
+        return (0);
+    scene->ground_buffer = map_buffer;
+    map_buffer = read_file(TEST_ABOVE_4, map_buffer);
+    if (map_buffer == 0)
+        return (0);
+    scene->above_buffer = map_buffer;
+    return (0);
+}
+
 int init_second_scene(scene_t *scene)
 {
     if (malloc_scene(scene, 1, 3, 1) == -1)
@@ -41,6 +56,8 @@ int init_second_scene(scene_t *scene)
     scene[1].music = NULL;
     if (init_buttons_2(scene) == -1 || init_objs_2(scene) == -1)
         return (-1);
+    init_map_buffer(&scene[1]);
     scene[1].ground_map = init_tile_list();
+    scene[1].above_map = init_tile_list_above();
     return (0);
 }

@@ -158,6 +158,8 @@ struct scene_s
     struct game_object_s **objs;
     struct game_object_s **ground_map;
     struct game_object_s **above_map;
+    char *ground_buffer;
+    char *above_buffer;
     struct button_s **buttons;
     game_t *game;
     sfMusic *music;
@@ -365,7 +367,9 @@ game_object_t **init_tile(char *map_path);
 
 tile_t *init_tile_tab(void);
 
-int draw_map(framebuffer_t *framebuffer, scene_t scene, char *map_path);
+int draw_map(framebuffer_t *framebuffer, scene_t scene);
+
+int draw_map_above(framebuffer_t *framebuffer, scene_t scene);
 
 /*utilities functions*/
 
@@ -381,6 +385,6 @@ sfIntRect init_rect(int width, int height, int x, int y);
 
 game_object_t **init_tile_list(void);
 
-int draw_map(framebuffer_t *framebuffer, scene_t scene, char *map_path);
+game_object_t **init_tile_list_above(void);
 
 #endif /* !RPG_H_ */

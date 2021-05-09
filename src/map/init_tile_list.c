@@ -9,9 +9,57 @@
 
 static const tile_t TILE_TAB[] = {
     {.id = 'A', .tile_pos = (sfVector2f){96, 2240}, \
-    .tile_size = (sfVector2f){32, 32}},
-    {.id = '!', .tile_pos = (sfVector2f){96, 2240}, \
-    .tile_size = (sfVector2f){32, 32}
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'B', .tile_pos = (sfVector2f){16, 2000}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'C', .tile_pos = (sfVector2f){32, 2000}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'D', .tile_pos = (sfVector2f){64, 2000}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'E', .tile_pos = (sfVector2f){16, 2016}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'F', .tile_pos = (sfVector2f){32, 2016}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'G', .tile_pos = (sfVector2f){64, 2016}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'H', .tile_pos = (sfVector2f){16, 2048}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'I', .tile_pos = (sfVector2f){32, 2048}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'J', .tile_pos = (sfVector2f){64, 2048}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'K', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'L', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'M', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'N', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'O', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'P', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'Q', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'R', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'S', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'T', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'U', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'V', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'W', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'X', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'Y', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'Z', .tile_pos = (sfVector2f){96, 2240}, \
+    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND
     }
 };
 
@@ -27,7 +75,7 @@ int free_tile_list(game_object_t **tile_list, int i)
 game_object_t **malloc_tile_list(game_object_t **tile_list)
 {
     int i = 0;
-    int max_size = 1;
+    int max_size = 10;
 
     tile_list = malloc(sizeof(game_object_t *) * (max_size + 1));
     if (!tile_list)
@@ -44,11 +92,11 @@ game_object_t **malloc_tile_list(game_object_t **tile_list)
 
 void put_tiles_in_list(game_object_t **tile_list)
 {
-    int max_size = 1;
+    int max_size = 10;
     int i = 0;
 
     while (i != max_size) {
-        init_object(tile_list[i], TILE_SHEET_GROUND, \
+        init_object(tile_list[i], TILE_TAB[i].sheet, \
         (sfVector2f){0,0}, init_rect(TILE_TAB[i].tile_size.x, TILE_TAB[i]\
         .tile_size.y, TILE_TAB[i].tile_pos.x, TILE_TAB[i].tile_pos.y));
         tile_list[i]->tile = TILE_TAB[i];

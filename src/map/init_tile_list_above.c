@@ -2,18 +2,16 @@
 ** EPITECH PROJECT, 2021
 ** B-MUL-200-NAN-2-1-myrpg-henri.chauvet
 ** File description:
-** draw_map
+** init_tile_list
 */
 
-#include "my.h"
 #include "rpg.h"
-#include "tiles.h"
 
 static const tile_t TILE_TAB[] = {
     {.id = 'A', .tile_pos = (sfVector2f){96, 2240}, \
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
-    {.id = 'B', .tile_pos = (sfVector2f){16, 2000}, \
-    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'B', .tile_pos = (sfVector2f){12, 83}, \
+    .tile_size = (sfVector2f){40, 45}, .sheet = S_GROUND},
     {.id = 'C', .tile_pos = (sfVector2f){32, 2000}, \
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
     {.id = 'D', .tile_pos = (sfVector2f){64, 2000}, \
@@ -65,34 +63,53 @@ static const tile_t TILE_TAB[] = {
     }
 };
 
-void draw_tile_from_map(framebuffer_t *framebuffer, scene_t scene, char *map, \
-sfVector2f pos)
+int free_tile_list_above(game_object_t **tile_list, int i)
+{
+    for (i--; i >= 0; i++) {
+        free(tile_list[i]);
+    }
+    free(tile_list);
+    return (0);
+}
+
+game_object_t **malloc_tile_list_above(game_object_t **tile_list)
 {
     int i = 0;
-    int j = 0;
+    int max_size = 10;
 
-//faire une boucle qui regarde dans la tile map
-    for (;map[i] != '\0'; i++) {
-        while (j != 9 && map[i] != TILE_TAB[j].id)
-            j++;
-        if (map[i] == TILE_TAB[j].id) {
-            sfSprite_setPosition(scene.ground_map[j]->sprite, pos);
-            sfRenderWindow_drawSprite(framebuffer->window, \
-            scene.ground_map[j]->sprite, NULL);
-            pos.x = pos.x + 16;
-        }
-        else if (map[i] == '\n') {
-            pos.y = pos.y + 15;
-            pos.x = 0;
-        }
-        else
-            pos.x = pos.x + 16;
-        j = 0;
+    tile_list = malloc(sizeof(game_object_t *) * (max_size + 1));
+    if (!tile_list)
+        return NULL;
+    tile_list[max_size] = NULL;
+    while (i != max_size) {
+        tile_list[i] = malloc(sizeof(game_object_t) * (max_size + 1));
+        if (!tile_list[i])
+            free_tile_list_above(tile_list, i);
+        i++;
+    }
+    return (tile_list);
+}
+
+void put_tiles_in_list_above(game_object_t **tile_list)
+{
+    int max_size = 10;
+    int i = 0;
+
+    while (i != max_size) {
+        init_object(tile_list[i], TILE_TAB[i].sheet, \
+        (sfVector2f){0,0}, init_rect(TILE_TAB[i].tile_size.x, TILE_TAB[i]\
+        .tile_size.y, TILE_TAB[i].tile_pos.x, TILE_TAB[i].tile_pos.y));
+        tile_list[i]->tile = TILE_TAB[i];
+        i++;
     }
 }
 
-int draw_map(framebuffer_t *framebuffer, scene_t scene)
+game_object_t **init_tile_list_above(void)
 {
-    draw_tile_from_map(framebuffer, scene, scene.ground_buffer, (sfVector2f){0, 0});
-    return 0;
+    game_object_t **tile_list = 0;
+
+    tile_list = malloc_tile_list_above(tile_list);
+
+    put_tiles_in_list_above(tile_list);
+    return (tile_list);
 }

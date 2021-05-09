@@ -12,8 +12,8 @@
 static const tile_t TILE_TAB[] = {
     {.id = 'A', .tile_pos = (sfVector2f){96, 2240}, \
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
-    {.id = 'B', .tile_pos = (sfVector2f){16, 2000}, \
-    .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
+    {.id = 'B', .tile_pos = (sfVector2f){12, 83}, \
+    .tile_size = (sfVector2f){40, 45}, .sheet = S_GROUND},
     {.id = 'C', .tile_pos = (sfVector2f){32, 2000}, \
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
     {.id = 'D', .tile_pos = (sfVector2f){64, 2000}, \
@@ -65,7 +65,7 @@ static const tile_t TILE_TAB[] = {
     }
 };
 
-void draw_tile_from_map(framebuffer_t *framebuffer, scene_t scene, char *map, \
+void draw_tile_from_map_above(framebuffer_t *framebuffer, scene_t scene, char *map, \
 sfVector2f pos)
 {
     int i = 0;
@@ -76,9 +76,9 @@ sfVector2f pos)
         while (j != 9 && map[i] != TILE_TAB[j].id)
             j++;
         if (map[i] == TILE_TAB[j].id) {
-            sfSprite_setPosition(scene.ground_map[j]->sprite, pos);
+            sfSprite_setPosition(scene.above_map[j]->sprite, pos);
             sfRenderWindow_drawSprite(framebuffer->window, \
-            scene.ground_map[j]->sprite, NULL);
+            scene.above_map[j]->sprite, NULL);
             pos.x = pos.x + 16;
         }
         else if (map[i] == '\n') {
@@ -91,8 +91,13 @@ sfVector2f pos)
     }
 }
 
-int draw_map(framebuffer_t *framebuffer, scene_t scene)
+int draw_map_above(framebuffer_t *framebuffer, scene_t scene, char *map_path)
 {
-    draw_tile_from_map(framebuffer, scene, scene.ground_buffer, (sfVector2f){0, 0});
+    char *map_buffer = NULL;
+
+    map_buffer = read_file(map_path, map_buffer);
+    if (map_buffer == 0)
+        return (0);
+    draw_tile_from_map_above(framebuffer, scene, map_buffer, (sfVector2f){0, 0});
     return 0;
 }
