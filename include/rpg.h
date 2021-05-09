@@ -53,6 +53,7 @@ typedef struct pokemon_s
     int hp_max;
     int level;
     int xp;
+    sfVector2f scale;
     sfSprite *sprite;
     sfTexture *back_texture;
     sfTexture *front_texture;

@@ -64,6 +64,33 @@ SRC		=	src/main.c						\
 			src/destroy_fight.c				\
 			src/map/init_tile_list_above.c	\
 			src/map/draw_map_above.c		\
+			src/pokemon/init_diglett.c		\
+			src/pokemon/init_dragonite.c	\
+			src/pokemon/init_gloom.c		\
+			src/pokemon/init_moltres.c		\
+			src/pokemon/init_onix.c			\
+			src/pokemon/init_pidgey.c		\
+			src/pokemon/init_pikachu.c		\
+			src/pokemon/init_aerodactyl.c	\
+			src/pokemon/init_tauros.c		\
+			src/pokemon/init_exeggutor.c	\
+			src/pokemon/init_golbat.c		\
+			src/pokemon/init_jynx.c			\
+			src/pokemon/init_kabutops.c		\
+			src/pokemon/init_machop.c		\
+			src/pokemon/init_meowth.c		\
+			src/pokemon/init_mewtwo.c		\
+			src/pokemon/init_umbreon.c		\
+			src/pokemon/init_zapdos.c		\
+			src/pokemon/init_rapidash.c		\
+			src/pokemon/init_ninetales.c	\
+			src/pokemon/init_gengar.c		\
+			src/pokemon/init_electabuzz.c	\
+			src/pokemon/init_golduck.c		\
+			src/pokemon/init_houndoom.c		\
+			src/pokemon/init_feraligatr.c	\
+			src/pokemon/init_growlithe.c	\
+			src/pokemon/init_primeape.c		\
 
 CC 		= 	gcc
 

@@ -15,7 +15,7 @@ int *current_scene, scene_t *scene)
     game->fight->win_time = sfClock_getElapsedTime(game->fight->win_clock);
     game->fight->second = game->fight->win_time.microseconds / 1000000.0;
     if (game->fight->second > 2.0) {
-        game->player->pokemon[game->fight->fighting_pokemon]->xp += 100;
+        game->player->pokemon[game->fight->fighting_pokemon]->xp += 25;
         switch_to_game(current_scene, scene, buffer, game);
     }
 }

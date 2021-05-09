@@ -13,6 +13,7 @@ int main(void)
     scene_t *scene = create_scene(6);
     game_t *game = create_game();
 
+    srand(time(NULL));
     if (buffer == NULL || scene == NULL)
         return (84);
     if (init_all_scene(scene) == -1)

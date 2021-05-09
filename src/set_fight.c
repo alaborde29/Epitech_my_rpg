@@ -45,8 +45,8 @@ void set_fighting_pokemon(pokemon_t *pokemon, pokemon_t *opponent_pokemon)
     sfSprite_setTexture(pokemon->sprite, pokemon->back_texture, sfTrue);
     sfSprite_setTexture(opponent_pokemon->sprite, \
 opponent_pokemon->front_texture, sfTrue);
-    sfSprite_setScale(pokemon->sprite, (sfVector2f){6.5, 6.5});
-    sfSprite_setScale(opponent_pokemon->sprite, (sfVector2f){6.5, 6.5});
+    sfSprite_setScale(pokemon->sprite, pokemon->scale);
+    sfSprite_setScale(opponent_pokemon->sprite, opponent_pokemon->scale);
     sfSprite_setPosition(pokemon->sprite, (sfVector2f){350, 550});
     sfSprite_setPosition(opponent_pokemon->sprite, (sfVector2f){1280, 180});
 }
