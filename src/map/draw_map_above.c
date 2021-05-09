@@ -91,7 +91,7 @@ sfVector2f pos)
     }
 }
 
-int draw_map_above(framebuffer_t *framebuffer, scene_t scene, char *map_path)
+int draw_map_above(framebuffer_t *framebuffer, scene_t scene)
 {
     char *map_buffer = NULL;
 
