@@ -18,8 +18,11 @@ char *read_file(char *path, char *buffer)
 
     if (st_return || fd == -1 || rd_return == -1)
         return (0);
-    else
+    else {
+        buffer[rd_return] = '\0';
+        close(fd);
         return (buffer);
+    }
 }
 
 int count_str_lines(char *str)

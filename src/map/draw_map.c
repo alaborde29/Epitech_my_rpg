@@ -38,5 +38,6 @@ int draw_map(framebuffer_t *framebuffer, scene_t scene, char *map_path)
     if (map_buffer == 0)
         return (0);
     draw_tile_from_map(framebuffer, scene, map_buffer, (sfVector2f){0, 0});
+    free(map_buffer);
     return 0;
 }
