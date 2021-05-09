@@ -25,7 +25,7 @@
 #include <time.h>
 #include <stdbool.h>
 
-#define PLAYER 1
+#define PLAYER 0
 
 typedef struct scene_s scene_t;
 
