@@ -65,13 +65,12 @@ static const tile_t TILE_TAB[] = {
     }
 };
 
-void draw_tile_from_map_above(framebuffer_t *framebuffer, scene_t scene, char *map, \
-sfVector2f pos)
+void draw_tile_from_map_above(framebuffer_t *framebuffer, scene_t scene, \
+char *map, sfVector2f pos)
 {
     int i = 0;
     int j = 0;
 
-//faire une boucle qui regarde dans la tile map
     for (;map[i] != '\0'; i++) {
         while (j != 9 && map[i] != TILE_TAB[j].id)
             j++;
@@ -93,6 +92,7 @@ sfVector2f pos)
 
 int draw_map_above(framebuffer_t *framebuffer, scene_t scene)
 {
-    draw_tile_from_map_above(framebuffer, scene, scene.above_buffer, (sfVector2f){0, 0});
+    draw_tile_from_map_above(framebuffer, scene, scene.above_buffer, \
+(sfVector2f){0, 0});
     return 0;
 }
