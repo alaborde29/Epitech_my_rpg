@@ -14,7 +14,7 @@ static const tile_t TILE_TAB[] = {
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
     {.id = 'B', .tile_pos = (sfVector2f){12, 83}, \
     .tile_size = (sfVector2f){40, 45}, .sheet = S_GROUND},
-    {.id = 'C', .tile_pos = (sfVector2f){32, 2000}, \
+    {.id = 'C', .tile_pos = (sfVector2f){232, 2183}, \
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
     {.id = 'D', .tile_pos = (sfVector2f){64, 2000}, \
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
@@ -93,11 +93,6 @@ sfVector2f pos)
 
 int draw_map_above(framebuffer_t *framebuffer, scene_t scene)
 {
-    char *map_buffer = NULL;
-
-    map_buffer = read_file(map_path, map_buffer);
-    if (map_buffer == 0)
-        return (0);
-    draw_tile_from_map_above(framebuffer, scene, map_buffer, (sfVector2f){0, 0});
+    draw_tile_from_map_above(framebuffer, scene, scene.above_buffer, (sfVector2f){0, 0});
     return 0;
 }

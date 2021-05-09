@@ -29,10 +29,10 @@ scene[current_scene].buttons[i]->text, NULL);
 
 void draw_scene(framebuffer_t *buffer, scene_t *scene, int current_scene)
 {
-    draw_objs(buffer, scene, current_scene);
-    draw_buttons(buffer, scene, current_scene);
     if (current_scene == 1) {
         draw_map(buffer, scene[1]);
         draw_map_above(buffer, scene[1]);
     }
+    draw_objs(buffer, scene, current_scene);
+    draw_buttons(buffer, scene, current_scene);
 }

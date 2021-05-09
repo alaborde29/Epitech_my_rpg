@@ -12,7 +12,7 @@ static const tile_t TILE_TAB[] = {
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
     {.id = 'B', .tile_pos = (sfVector2f){12, 83}, \
     .tile_size = (sfVector2f){40, 45}, .sheet = S_GROUND},
-    {.id = 'C', .tile_pos = (sfVector2f){32, 2000}, \
+    {.id = 'C', .tile_pos = (sfVector2f){232, 2183}, \
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
     {.id = 'D', .tile_pos = (sfVector2f){64, 2000}, \
     .tile_size = (sfVector2f){16, 16}, .sheet = S_GROUND},
