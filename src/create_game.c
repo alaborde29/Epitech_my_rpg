@@ -55,6 +55,9 @@ game_t *create_game(void)
     game->fight->attack_choose = false;
     game->fight->attack->first = false;
     game->fight->attack->second = false;
+    game->pokeball_font = sfFont_createFromFile("assets/godzilla.ttf");
+    game->pokeball_text = create_text((sfVector2f){0, 0}, \
+NULL, game->pokeball_font, sfBlack);
     return (game);
 }
 

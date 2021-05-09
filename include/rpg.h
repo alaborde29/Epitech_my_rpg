@@ -162,7 +162,6 @@ struct scene_s
     char *ground_buffer;
     char *above_buffer;
     struct button_s **buttons;
-    game_t *game;
     sfMusic *music;
 };
 

@@ -100,8 +100,10 @@ void put_tiles_in_list_above(game_object_t **tile_list)
         (sfVector2f){0,0}, init_rect(TILE_TAB[i].tile_size.x, TILE_TAB[i]\
         .tile_size.y, TILE_TAB[i].tile_pos.x, TILE_TAB[i].tile_pos.y));
         tile_list[i]->tile = TILE_TAB[i];
+        tile_list[i]->clock = NULL;
         i++;
     }
+    tile_list[max_size] = NULL;
 }
 
 game_object_t **init_tile_list_above(void)

@@ -13,7 +13,7 @@ char *read_file(char *path, char *buffer)
     struct stat file_info;
     int st_return = stat(path, &file_info);
     int fd = open(path, O_RDONLY);
-    buffer = malloc(sizeof(char) * file_info.st_size);
+    buffer = malloc(sizeof(char) * (file_info.st_size + 1));
     int rd_return = read(fd, buffer, file_info.st_size);
 
     if (st_return || fd == -1 || rd_return == -1)

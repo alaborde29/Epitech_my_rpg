@@ -91,6 +91,7 @@ SRC		=	src/main.c						\
 			src/pokemon/init_feraligatr.c	\
 			src/pokemon/init_growlithe.c	\
 			src/pokemon/init_primeape.c		\
+			src/destroy_map.c				\
 
 CC 		= 	gcc
 

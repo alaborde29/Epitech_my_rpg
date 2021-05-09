@@ -7,6 +7,8 @@
 
 #include "rpg.h"
 
+void destroy_map(scene_t scene);
+
 void destroy_buffer(framebuffer_t *buffer)
 {
     sfRenderWindow_destroy(buffer->window);
@@ -52,6 +54,8 @@ void destroy_all_scene(scene_t *scene)
         destroy_buttons(scene[i].buttons);
         if (scene[i].music != NULL)
             sfMusic_destroy(scene[i].music);
+        if (i == 1)
+            destroy_map(scene[i]);
     }
     free(scene);
 }
@@ -66,7 +70,7 @@ void destroy_all(scene_t *scene, framebuffer_t *buffer, game_t *game)
     sfText_destroy(game->pokeball_text);
     sfFont_destroy(game->pokeball_font);
     for (int i = 0; game->pokemon[i]; i++)
-    destroy_pokemon(game->pokemon[i]);
+        destroy_pokemon(game->pokemon[i]);
     free(game->fight);
     free(game);
 }

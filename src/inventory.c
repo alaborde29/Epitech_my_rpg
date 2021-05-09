@@ -12,9 +12,6 @@ void set_pokeball_text(game_t *game)
     game->nb_pokeball = 10;
     char *pokeball = malloc(sizeof(char) * 50);
 
-    game->pokeball_font = sfFont_createFromFile("assets/godzilla.ttf");
-    game->pokeball_text = create_text((sfVector2f){0, 0}, \
-NULL, game->pokeball_font, sfBlack);
     pokeball[0] = '\0';
     my_strcat(pokeball, "x");
     my_strcat(pokeball, my_itoc(game->nb_pokeball));
