@@ -48,8 +48,10 @@ int init_second_scene(scene_t *scene)
         return (-1);
     scene[1].music = NULL;
     init_map_buffer(&scene[1]);
-    scene[1].ground_map = init_tile_list();
-    scene[1].above_map = init_tile_list_above();
+    scene[1].TILE_TAB = create_tile_tab();
+    scene[1].TILE_TAB_ABOVE = create_tile_tab_above();
+    scene[1].ground_map = init_tile_list(scene[1].TILE_TAB);
+    scene[1].above_map = init_tile_list_above(scene[1].TILE_TAB_ABOVE);
     if (init_buttons_2(scene) == -1 || init_objs_2(scene) == -1)
         return (-1);
     return (0);

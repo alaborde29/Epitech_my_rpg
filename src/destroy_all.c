@@ -54,8 +54,11 @@ void destroy_all_scene(scene_t *scene)
         destroy_buttons(scene[i].buttons);
         if (scene[i].music != NULL)
             sfMusic_destroy(scene[i].music);
-        if (i == 1)
+        if (i == 1) {
+            free(scene[i].TILE_TAB);
+            free(scene[i].TILE_TAB_ABOVE);
             destroy_map(scene[i]);
+        }
     }
     free(scene);
 }

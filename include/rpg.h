@@ -159,6 +159,8 @@ struct scene_s
     struct game_object_s **objs;
     struct game_object_s **ground_map;
     struct game_object_s **above_map;
+    tile_t *TILE_TAB;
+    tile_t *TILE_TAB_ABOVE;
     char *ground_buffer;
     char *above_buffer;
     struct button_s **buttons;
@@ -383,8 +385,12 @@ int count_alpha_letter(char *str);
 
 sfIntRect init_rect(int width, int height, int x, int y);
 
-game_object_t **init_tile_list(void);
+game_object_t **init_tile_list(tile_t *TILE_TAB);
 
-game_object_t **init_tile_list_above(void);
+game_object_t **init_tile_list_above(tile_t *TILE_TAB);
+
+tile_t *create_tile_tab(void);
+
+tile_t *create_tile_tab_above(void);
 
 #endif /* !RPG_H_ */

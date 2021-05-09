@@ -92,6 +92,8 @@ SRC		=	src/main.c						\
 			src/pokemon/init_growlithe.c	\
 			src/pokemon/init_primeape.c		\
 			src/destroy_map.c				\
+			src/map/create_tile_tab.c		\
+			src/map/create_tile_tab_above.c	\
 
 CC 		= 	gcc
 
